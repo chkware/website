@@ -1,8 +1,15 @@
 @import "tailwindcss";
-
 @plugin "tailwindcss-animate";
+@layer theme, base, components, utilities;
 
-@custom-variant dark (&:is(.dark *));
+/* Light Theme */
+:root {
+  --primary: 220, 90%, 56%;
+  --secondary: 220, 13%, 91%;
+  --accent: 355, 90%, 60%;
+  --textPrimary: 240, 10%, 3.9%;
+  --background: 0, 0%, 100%;
+}
 
 @theme {
   --font-sans: var(--font-geist-sans);
@@ -10,6 +17,7 @@
 }
 
 :root {
+  --textPrimary: 240, 10%, 3.9%;
   --background: hsl(0 0% 100%);
   --foreground: hsl(0 0% 3.9%);
   --card: hsl(0 0% 100%);
@@ -102,4 +110,34 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.8s ease-in-out;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.8s ease-in-out;
 }

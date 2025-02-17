@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Search, User, Settings, Menu, X } from "lucide-react"; // Icons from Lucide
+import {Search, BookText, Menu, X, Github} from "lucide-react"; // Icons from Lucide
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="bg-white shadow-md dark:bg-gray-900 p-4">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container max-w-[1200] mx-auto flex justify-between items-center">
 
         {/* Left Section - Logo & Links */}
         <div className="flex items-center">
@@ -32,12 +32,12 @@ export default function Navbar() {
             <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           </div>
           <a href="/profile" className="text-gray-700 dark:text-gray-300 hover:text-blue-500 flex items-center space-x-1">
-            <User size={20} />
-            <span>Profile</span>
+            <BookText size={20} />
+            <span>Doc's</span>
           </a>
           <a href="/settings" className="text-gray-700 dark:text-gray-300 hover:text-blue-500 flex items-center space-x-1">
-            <Settings size={20} />
-            <span>Settings</span>
+            <Github size={20} />
+            <span>Github</span>
           </a>
         </div>
 
