@@ -15,7 +15,7 @@ export default function Navbar() {
             CHKwired
           </span>
           <div className="hidden md:flex space-x-6 ml-6">
-            <a href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">Home</a>
+            <a href="/public" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">Home</a>
             <a href="/features" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">Features</a>
             <a href="/blog" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">Blog</a>
           </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 px-4 py-2 space-y-2">
-          <a href="/" className="block text-gray-700 dark:text-gray-300 hover:text-blue-500">Home</a>
+          <a href="/public" className="block text-gray-700 dark:text-gray-300 hover:text-blue-500">Home</a>
           <a href="/features" className="block text-gray-700 dark:text-gray-300 hover:text-blue-500">Features</a>
           <a href="/blog" className="block text-gray-700 dark:text-gray-300 hover:text-blue-500">Blog</a>
           <hr className="border-gray-200 dark:border-gray-700" />

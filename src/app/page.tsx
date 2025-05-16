@@ -1,10 +1,10 @@
-import Layout from "@/components/Layout";
 import Image from "next/image";
 
 
 export default function HomePage() {
   return (
-    <Layout>
+    <>
+
       <section className="bg-neutral-50  py-16 md:py-24 px-4 md:px-12">
         <div className="container max-w-[1200] mx-auto flex flex-col md:flex-row items-center space-y-8 md:space-y-0">
           <div className="w-1/2 animate-fadeInLeft">
@@ -51,17 +51,17 @@ export default function HomePage() {
           </p>
           <div className="mt-10 flex flex-wrap gap-8">
             <div className="bg-white p-6 rounded-lg shadow-sm w-full">
-              <Image src="/images/feature-icons.png" alt="Feature 1" width={64} height={64} />
+              {/*<Image src="/images/feature-icons.png" alt="Feature 1" width={64} height={64} />*/}
               <h3 className="text-2xl font-semibold text-gray-800 mt-4">Scriptable HTTP client</h3>
               <p className="text-gray-600 mt-2">Easily manage API testing and authentication workflows.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm w-full">
-              <Image src="/images/feature-icons.png" alt="Feature 2" width={64} height={64} />
+              {/*<Image src="/images/feature-icons.png" alt="Feature 2" width={64} height={64} />*/}
               <h3 className="text-2xl font-semibold text-gray-800 mt-4">JSON Validator</h3>
               <p className="text-gray-600 mt-2">Ensure JSON structures match expected schemas effortlessly.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm w-full">
-              <Image src="/images/feature-icons.png" alt="Feature 3" width={64} height={64} />
+              {/*<Image src="/images/feature-icons.png" alt="Feature 3" width={64} height={64} />*/}
               <h3 className="text-2xl font-semibold text-gray-800 mt-4">Automate Workflows</h3>
               <p className="text-gray-600 mt-2">Build low-code API automations with simple workflows.</p>
             </div>
@@ -77,7 +77,14 @@ export default function HomePage() {
             Connect your APIs with top integrations like Slack, Jira, Google Drive, and more.
           </p>
           <div className="mt-8">
-            <Image src="/images/integration-logos.png" alt="Integrations" width={800} height={400} className="mx-auto" />
+            <Image
+              src="/images/integration-logos.png"
+              alt="Integrations"
+              width={800}
+              height={400}
+              className="mx-auto"
+              priority={true}
+            />
           </div>
         </div>
       </section>
@@ -107,6 +114,6 @@ export default function HomePage() {
         </div>
       </section>
 
-    </Layout>
+    </>
   );
 }
