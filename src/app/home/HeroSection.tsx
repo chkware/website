@@ -15,7 +15,6 @@ export function HeroSection() {
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl"></div>
           <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply filter blur-3xl"></div>
         </div>
-
         <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Left side hero content */}
           <motion.div
@@ -147,7 +146,7 @@ endpoints:
             className="group flex items-center gap-4 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-5 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             <span className="text-sm text-gray-600 dark:text-gray-300">
-              "CHKwire cut our API testing time in half" - <span className="font-medium text-gray-900 dark:text-white">Sarah at TechCorp</span>
+              &quot;CHKwire cut our API testing time in half&quot; - <span className="font-medium text-gray-900 dark:text-white">Sarah at TechCorp</span>
             </span>
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700">
               <ExternalLink className="h-3 w-3 text-gray-600 dark:text-gray-400" />
