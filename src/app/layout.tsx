@@ -29,7 +29,7 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('chkwire-theme');
+                  var theme = localStorage.getItem('chkware-theme');
                   var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                   var isDark = theme === 'dark' || (!theme && systemDark);
                   

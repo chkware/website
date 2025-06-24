@@ -9,7 +9,7 @@ import { BookOpenIcon, BookmarkIcon, GraduationCapIcon, UsersIcon } from "lucide
 const resources = [
   {
     title: "Documentation",
-    description: "Comprehensive guides for getting started with CHKwire",
+    description: "Comprehensive guides for getting started with CHKware",
     icon: <BookOpenIcon className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
     link: "/docs",
     color: "bg-blue-50 dark:bg-blue-950/40"
@@ -23,7 +23,7 @@ const resources = [
   },
   {
     title: "API Reference",
-    description: "Detailed reference for the CHKwire API and configuration options",
+    description: "Detailed reference for the CHKware API and configuration options",
     icon: <BookmarkIcon className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
     link: "/api",
     color: "bg-purple-50 dark:bg-purple-950/40"
@@ -46,7 +46,7 @@ export function ResourcesSection() {
             Resources & Documentation
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
-            Everything you need to master CHKwire and build better API tests
+            Everything you need to master CHKware and build better API tests
           </p>
         </div>
 

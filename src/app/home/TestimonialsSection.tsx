@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const testimonials = [
   {
     quote:
-      "CHKwire has transformed our API testing workflow. It's reduced our testing time by 60% and caught issues we would have missed.",
+      "CHKware has transformed our API testing workflow. It's reduced our testing time by 60% and caught issues we would have missed.",
     author: "Sarah Johnson",
     role: "Senior QA Engineer",
     company: "TechStream",
@@ -27,7 +27,7 @@ const testimonials = [
   },
   {
     quote:
-      "We integrated CHKwire into our CI/CD pipeline and now we catch API issues before they ever reach production. Highly recommended.",
+      "We integrated CHKware into our CI/CD pipeline and now we catch API issues before they ever reach production. Highly recommended.",
     author: "Jessica Taylor",
     role: "DevOps Lead",
     company: "CloudNative",
@@ -61,7 +61,7 @@ export function TestimonialsSection() {
             Trusted by Developers Worldwide
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
-            See what teams are saying about their experience with CHKwire
+            See what teams are saying about their experience with CHKware
           </p>
         </motion.div>
 

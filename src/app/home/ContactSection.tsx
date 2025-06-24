@@ -12,7 +12,7 @@ export function ContactSection() {
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">
-            Need Help With CHKwire?
+            Need Help With CHKware?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
             Get in touch with our support team or explore additional resources
@@ -106,7 +106,7 @@ export function ContactSection() {
                 <div>
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Email Support</h4>
                   <p className="text-gray-600 dark:text-gray-400 mb-2">Our support team typically responds within 24 hours</p>
-                  <a href="mailto:support@chkwire.com" className="text-blue-600 dark:text-blue-400 font-medium">support@chkwire.com</a>
+                  <a href="mailto:info@chkware.com" className="text-blue-600 dark:text-blue-400 font-medium">info@chkware.com</a>
                 </div>
               </div>
             </Card>

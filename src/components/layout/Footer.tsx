@@ -30,7 +30,7 @@ const footerLinks: FooterLinkGroup[] = [
       { title: "Quick Start", href: "/learn/quick-start" },
       { title: "Installation", href: "/learn/installation" },
       { title: "Tutorial", href: "/learn/tutorial" },
-      { title: "Thinking in CHKwire", href: "/learn/thinking-in-chkwire" },
+      { title: "Thinking in CHKware", href: "/learn/thinking-in-chkware" },
     ],
   },
   {
@@ -121,11 +121,11 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col sm:flex-row items-center mb-6 md:mb-0">
               <span className="text-xl font-bold bg-gradient-to-r from-[#0070f3] to-[#00a2ff] bg-clip-text text-transparent mr-3">
-                CHKwire
+                CHKware
               </span>
               <div className="flex items-center mt-3 sm:mt-0">
                 <span className="text-sm text-neutral-500 dark:text-neutral-400">
-                  &copy; {new Date().getFullYear()} CHKwire. All rights reserved.
+                  &copy; {new Date().getFullYear()} CHKware. All rights reserved.
                 </span>
                 <span className="mx-2 text-neutral-300 dark:text-neutral-700">•</span>
                 <span className="inline-flex items-center text-sm text-neutral-500 dark:text-neutral-400">
@@ -162,7 +162,7 @@ export function Footer() {
                 <Linkedin size={20} />
               </a>
               <a
-                href="mailto:info@chkwire.com"
+                href="mailto:info@chkware.com"
                 className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
                 aria-label="Email"
               >

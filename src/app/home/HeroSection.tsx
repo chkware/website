@@ -26,7 +26,7 @@ export function HeroSection() {
             {/* Version badge */}
             <span className="inline-flex items-center rounded-full border border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-800 px-3 py-1 text-sm font-medium text-gray-800 dark:text-gray-200 shadow-sm mb-6">
               <span className="h-2 w-2 rounded-full bg-blue-500 mr-2"></span>
-              New: CHKwire v0.38.2 Released
+              New: CHKware v0.5.0 Released
             </span>
 
             {/* Headline */}
@@ -134,7 +134,7 @@ endpoints:
             className="group flex items-center gap-4 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-5 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             <span className="text-sm text-gray-600 dark:text-gray-300">
-              &quot;CHKwire cut our API testing time in half&quot; - <span className="font-medium text-gray-900 dark:text-white">Sarah at TechCorp</span>
+              &quot;CHKware cut our API testing time in half&quot; - <span className="font-medium text-gray-900 dark:text-white">Sarah at TechCorp</span>
             </span>
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700">
               <ExternalLink className="h-3 w-3 text-gray-600 dark:text-gray-400" />

@@ -20,7 +20,7 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  storageKey = "chkwire-theme",
+  storageKey = "chkware-theme",
 }: ThemeProviderProps) {
   const [mounted, setMounted] = useState(false);
   const [theme, setThemeState] = useState<Theme>(() => {

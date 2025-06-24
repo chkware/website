@@ -11,7 +11,7 @@ export function FeaturesSection() {
           Powerful & Low-Code API Testing
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-16 mx-auto max-w-3xl">
-          CHKwire simplifies API testing and automation with easy-to-write configurations, cross-platform support, and reusable test cases.
+          CHKware simplifies API testing and automation with easy-to-write configurations, cross-platform support, and reusable test cases.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

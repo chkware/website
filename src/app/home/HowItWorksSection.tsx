@@ -42,7 +42,7 @@ export function HowItWorksSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            How CHKwire Works
+            How CHKware Works
           </motion.h2>
           <motion.p
             className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl"
@@ -189,7 +189,7 @@ Total time: 335ms`}
               Simple, Powerful, Flexible
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              CHKwire streamlines the API testing process with a human-readable configuration format and powerful validation capabilities. No complex programming required.
+              CHKware streamlines the API testing process with a human-readable configuration format and powerful validation capabilities. No complex programming required.
             </p>
             <ul className="space-y-3 mb-8">
               {[
@@ -224,7 +224,7 @@ Total time: 335ms`}
           >
             <Card className="border border-gray-200 dark:border-gray-800 p-6">
               <h4 className="text-xl font-bold text-black dark:text-white mb-4">
-                What makes CHKwire different?
+                What makes CHKware different?
               </h4>
               <ul className="space-y-4">
                 <li className="flex items-start">

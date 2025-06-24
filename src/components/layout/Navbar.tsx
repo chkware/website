@@ -31,7 +31,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-            CHKwire
+            CHKware
           </span>
         </Link>
 

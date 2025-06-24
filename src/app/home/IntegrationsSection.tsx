@@ -61,7 +61,7 @@ export function IntegrationsSection() {
             Integrate with Your Favorite Tools
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
-            CHKwire works seamlessly with your existing development ecosystem
+            CHKware works seamlessly with your existing development ecosystem
           </p>
         </motion.div>
 
@@ -118,7 +118,7 @@ export function IntegrationsSection() {
             Need a custom integration?
           </h3>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Our flexible API allows you to integrate CHKwire with any tool in your workflow.
+            Our flexible API allows you to integrate CHKware with any tool in your workflow.
             <Link href="#" className="text-blue-600 dark:text-blue-400 hover:underline ml-2">
               View API documentation
             </Link>
