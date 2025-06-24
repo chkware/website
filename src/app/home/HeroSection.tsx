@@ -53,18 +53,6 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-
-            {/* User badge */}
-            <div className="mt-8 flex items-center justify-center lg:justify-start space-x-2 text-sm text-gray-500">
-              <div className="flex -space-x-1">
-                <div className="h-6 w-6 rounded-full border-2 border-white dark:border-black bg-gray-200"></div>
-                <div className="h-6 w-6 rounded-full border-2 border-white dark:border-black bg-gray-300"></div>
-                <div className="h-6 w-6 rounded-full border-2 border-white dark:border-black bg-gray-400"></div>
-              </div>
-              <span>
-                Used by <span className="font-medium text-gray-900 dark:text-white">3,200+</span> developers
-              </span>
-            </div>
           </motion.div>
 
           {/* Right side hero image/demo */}

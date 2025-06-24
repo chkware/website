@@ -181,29 +181,6 @@ export function TestimonialsSection() {
             </button>
           </div>
         </div>
-
-        {/* Stats Section */}
-        <motion.div
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          {[
-            { value: "3,200+", label: "Developers" },
-            { value: "500+", label: "Companies" },
-            { value: "12M+", label: "API Tests Run" },
-            { value: "96%", label: "Satisfaction" },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
