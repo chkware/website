@@ -144,29 +144,6 @@ expose:
             </div>
           </motion.div>
         </div>
-
-        {/* Testimonial badge at bottom */}
-        <motion.div
-          className="mt-16 flex justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Link
-            href="/testimonials"
-            className="group flex items-center gap-4 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-5 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-          >
-            <span className="text-sm text-gray-600 dark:text-gray-300">
-              &quot;CHKware cut our API testing time in half&quot; -{" "}
-              <span className="font-medium text-gray-900 dark:text-white">
-                Sarah at TechCorp
-              </span>
-            </span>
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700">
-              <ExternalLink className="h-3 w-3 text-gray-600 dark:text-gray-400" />
-            </span>
-          </Link>
-        </motion.div>
       </div>
     </section>
   );
