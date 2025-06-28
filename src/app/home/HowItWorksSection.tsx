@@ -207,9 +207,8 @@ Steps total: 3, failed: 0
             <ul className="space-y-3 mb-8">
               {[
                 "Write tests in YAML for readability and ease of use",
-                "Validate responses with JSONPath expressions",
+                "Validate JSON and XML responses",
                 "Chain requests for comprehensive workflow testing",
-                "Export results as HTML, JSON, or JUnit reports",
               ].map((item, index) => (
                 <li key={index} className="flex items-start">
                   <div className="flex-shrink-0 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-2 mt-0.5">

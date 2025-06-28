@@ -9,30 +9,21 @@ import { cn } from "@/lib/utils";
 const testimonials = [
   {
     quote:
-      "CHKware has transformed our API testing workflow. It's reduced our testing time by 60% and caught issues we would have missed.",
-    author: "Sarah Johnson",
+      "Manual testing was eating up our team’s time. With chkware, we automated key test cases in days, not weeks. The intuitive workflow helped us cut our regression cycle by half.",
+    author: "Emily Tran",
+    role: "QA Lead",
+    company: "FinEdge Solutions",
+    avatar: "/images/Emily-Tran-Photo-1930336811.jpg",
+    logo: "/images/fin-edgelogo.png",
+  },
+  {
+    quote:
+      "Managing API tests across projects was slow and messy. chkware’s API suite brought all endpoints and test cases into one place. We track changes faster and onboard new testers easily.",
+    author: "Priya Desai",
     role: "Senior QA Engineer",
-    company: "TechStream",
-    avatar: "/images/avatars/avatar-1.jpg",
-    logo: "/images/logos/techstream.svg",
-  },
-  {
-    quote:
-      "The low-code approach means our entire team can write and maintain tests, not just developers. It's been a game-changer for our workflow.",
-    author: "Michael Chen",
-    role: "Engineering Manager",
-    company: "DataFlow Systems",
-    avatar: "/images/avatars/avatar-2.jpg",
-    logo: "/images/logos/dataflow.svg",
-  },
-  {
-    quote:
-      "We integrated CHKware into our CI/CD pipeline and now we catch API issues before they ever reach production. Highly recommended.",
-    author: "Jessica Taylor",
-    role: "DevOps Lead",
-    company: "CloudNative",
-    avatar: "/images/avatars/avatar-3.jpg",
-    logo: "/images/logos/cloudnative.svg",
+    company: "HealthSync Inc.",
+    avatar: "/images/priya-desai-2445561974.jpg",
+    logo: "/images/healthsynclogo.png",
   },
 ];
 
@@ -118,7 +109,8 @@ export function TestimonialsSection() {
                         {testimonials[current].author}
                       </div>
                       <div className="text-sm text-gray-600 dark:text-gray-300">
-                        {testimonials[current].role}, {testimonials[current].company}
+                        {testimonials[current].role},{" "}
+                        {testimonials[current].company}
                       </div>
                     </div>
 

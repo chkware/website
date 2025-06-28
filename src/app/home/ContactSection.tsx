@@ -28,12 +28,17 @@ export function ContactSection() {
             viewport={{ once: true }}
           >
             <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm overflow-hidden p-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send us a message</h3>
-              
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Send us a message
+              </h3>
+
               <form className="space-y-5">
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                    >
                       Name
                     </label>
                     <input
@@ -44,7 +49,10 @@ export function ContactSection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                    >
                       Email
                     </label>
                     <input
@@ -55,9 +63,12 @@ export function ContactSection() {
                     />
                   </div>
                 </div>
-                
+
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
                     Subject
                   </label>
                   <input
@@ -67,9 +78,12 @@ export function ContactSection() {
                     placeholder="How can we help?"
                   />
                 </div>
-                
+
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
                     Message
                   </label>
                   <textarea
@@ -79,7 +93,7 @@ export function ContactSection() {
                     placeholder="Your message here..."
                   ></textarea>
                 </div>
-                
+
                 <Button className="w-full flex items-center justify-center gap-2">
                   <Send className="h-4 w-4" />
                   Send Message
@@ -87,7 +101,7 @@ export function ContactSection() {
               </form>
             </Card>
           </motion.div>
-          
+
           {/* Contact information */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -104,13 +118,22 @@ export function ContactSection() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Email Support</h4>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2">Our support team typically responds within 24 hours</p>
-                  <a href="mailto:info@chkware.com" className="text-blue-600 dark:text-blue-400 font-medium">info@chkware.com</a>
+                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
+                    Email Support
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400 mb-2">
+                    Our support team typically responds within 24 hours
+                  </p>
+                  <a
+                    href="mailto:info@chkware.com"
+                    className="text-blue-600 dark:text-blue-400 font-medium"
+                  >
+                    info@chkware.com
+                  </a>
                 </div>
               </div>
             </Card>
-            
+
             <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm overflow-hidden p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
@@ -119,15 +142,22 @@ export function ContactSection() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Live Chat</h4>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2">Available Monday to Friday, 9am - 5pm EST</p>
-                  <Button variant="outline" className="text-green-600 dark:text-green-400 border-green-600 dark:border-green-400">
+                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
+                    Live Chat
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400 mb-2">
+                    Available Monday to Friday, 9am - 5pm EST
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="text-green-600 dark:text-green-400 border-green-600 dark:border-green-400"
+                  >
                     Start a chat
                   </Button>
                 </div>
               </div>
             </Card>
-            
+
             <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm overflow-hidden p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
@@ -136,9 +166,18 @@ export function ContactSection() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Phone Support</h4>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2">Available for enterprise customers</p>
-                  <a href="tel:+18001234567" className="text-purple-600 dark:text-purple-400 font-medium">+1 (800) 123-4567</a>
+                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
+                    Phone Support
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400 mb-2">
+                    Available for premium customers
+                  </p>
+                  <a
+                    href="tel:+18001234567"
+                    className="text-purple-600 dark:text-purple-400 font-medium"
+                  >
+                    +880 1878 239734
+                  </a>
                 </div>
               </div>
             </Card>
