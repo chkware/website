@@ -31,12 +31,21 @@ export function HeroSection() {
 
             {/* Headline */}
             <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight text-black dark:text-white mb-6">
-              A Low-code API <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Testing</span> and <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Automation</span> Toolbox
+              Reduce API{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                regression cost
+              </span>{" "}
+              and{" "}
+              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                release
+              </span>{" "}
+              quickly.
             </h1>
 
             {/* Subheadline */}
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0">
-              Simplify your API testing process with simple YAML configurations, cross-platform support, and reusable components.
+              Streamline your API development and testing with easy-to-use,
+              reusable YAML configuration specs.
             </p>
 
             {/* CTA Buttons */}
@@ -46,7 +55,11 @@ export function HeroSection() {
                   Get Started <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="px-6 py-2 h-12 text-base gap-2">
+              <Button
+                asChild
+                variant="outline"
+                className="px-6 py-2 h-12 text-base gap-2"
+              >
                 <Link href="#demo" className="flex items-center">
                   <Code className="h-5 w-5" />
                   View Demo
@@ -69,34 +82,26 @@ export function HeroSection() {
                   <div className="h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
                   <div className="h-2.5 w-2.5 rounded-full bg-green-500"></div>
                   <div className="ml-2 text-xs font-medium text-gray-600 dark:text-gray-300">
-                    api-test.yaml
+                    user-login-request.chk
                   </div>
                 </div>
                 <pre className="bg-gray-900 p-4 rounded-b-lg text-xs sm:text-sm overflow-auto text-gray-100">
-                  <code>{`# API Test Configuration
-name: Payment API Test
-version: 1.0
-base-url: https://api.example.com/v1
+                  <code>
+                    {`# Do a Login request
+---
+version: default:http:0.7.2
 
-endpoints:
-  - path: /payments
-    method: POST
-    description: Create a new payment
-    headers:
-      Content-Type: application/json
-      Authorization: Bearer {{token}}
-    request:
-      body:
-        amount: 100.00
-        currency: USD
-        description: Test payment
-    response:
-      status: 201
-      validate:
-        - jsonpath: $.payment_id
-          exists: true
-        - jsonpath: $.status
-          equals: pending`}</code>
+request:
+  url: https://myserver.com/user/login
+  method: POST
+
+  body[json]:
+    username: emilys
+    password: emilyspass
+
+expose:
+  - <% _response %>`}
+                  </code>
                 </pre>
               </div>
 
@@ -104,19 +109,37 @@ endpoints:
               <div className="absolute -bottom-8 -left-12 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-lg border border-gray-200 dark:border-gray-800 text-center w-60 animate-fadeInUp-delay-2">
                 <div className="flex justify-between items-center mb-2">
                   <div className="h-10 w-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
-                    <svg className="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="h-6 w-6 text-green-600 dark:text-green-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   </div>
-                  <div className="font-medium text-gray-700 dark:text-gray-300">Test passed</div>
+                  <div className="font-medium text-gray-700 dark:text-gray-300">
+                    Test passed
+                  </div>
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">All 16 assertions passed in 1.2s</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  All 16 assertions passed in 1.2s
+                </div>
               </div>
 
               {/* Floating YAML badge */}
               <div className="absolute -top-6 -right-6 rounded-lg bg-white dark:bg-gray-900 p-3 shadow-lg border border-gray-200 dark:border-gray-800 text-center animate-fadeInUp-delay-1">
-                <div className="font-medium text-sm text-gray-800 dark:text-gray-200">Low-code</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">YAML Configuration</div>
+                <div className="font-medium text-sm text-gray-800 dark:text-gray-200">
+                  Low-code
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  YAML Configuration
+                </div>
               </div>
             </div>
           </motion.div>
@@ -134,7 +157,10 @@ endpoints:
             className="group flex items-center gap-4 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-5 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             <span className="text-sm text-gray-600 dark:text-gray-300">
-              &quot;CHKware cut our API testing time in half&quot; - <span className="font-medium text-gray-900 dark:text-white">Sarah at TechCorp</span>
+              &quot;CHKware cut our API testing time in half&quot; -{" "}
+              <span className="font-medium text-gray-900 dark:text-white">
+                Sarah at TechCorp
+              </span>
             </span>
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700">
               <ExternalLink className="h-3 w-3 text-gray-600 dark:text-gray-400" />

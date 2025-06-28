@@ -12,22 +12,26 @@ export function HowItWorksSection() {
     {
       icon: <FileCode className="h-6 w-6 text-blue-600" />,
       title: "Write Configuration",
-      description: "Create YAML configuration files defining your API tests, endpoints, and validations.",
+      description:
+        "Create YAML configuration files defining your API tests, endpoints, and validations.",
     },
     {
       icon: <Play className="h-6 w-6 text-green-600" />,
       title: "Run Tests",
-      description: "Execute your API tests locally or in CI/CD pipelines with a single command.",
+      description:
+        "Execute your API tests locally or in CI/CD pipelines with a single command.",
     },
     {
       icon: <HardDrive className="h-6 w-6 text-purple-600" />,
       title: "View Results",
-      description: "Analyze detailed test results, response times, and validation outcomes.",
+      description:
+        "Analyze detailed test results, response times, and validation outcomes.",
     },
     {
       icon: <Box className="h-6 w-6 text-orange-600" />,
       title: "Automate & Integrate",
-      description: "Schedule periodic tests and integrate with your workflow tools.",
+      description:
+        "Schedule periodic tests and integrate with your workflow tools.",
     },
   ];
 
@@ -75,8 +79,12 @@ export function HowItWorksSection() {
                   <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
                     {step.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{step.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{step.description}</p>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    {step.description}
+                  </p>
                 </div>
               </Card>
             </motion.div>
@@ -97,37 +105,33 @@ export function HowItWorksSection() {
               <div className="rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 h-full flex flex-col">
                 <div className="bg-gray-800 text-white p-2 text-sm font-mono flex items-center">
                   <FileCode className="h-4 w-4 mr-2" />
-                  api-tests.yaml
+                  Workflow-User-Post-Create.chk
                 </div>
                 <div className="bg-gray-950 p-6 flex-grow">
                   <pre className="text-blue-400 text-sm font-mono">
-{`# API Test Configuration
-version: 1
-name: User API Tests
+                    {`# API Workflow configuration
+---
+version: default:workflow:0.8.0
 
-tests:
-  - name: Create User
-    request:
-      url: https://api.example.com/users
-      method: POST
-      headers:
-        Content-Type: application/json
-      body:
-        name: "John Doe"
-        email: "john@example.com"
-    assertions:
-      - status: 201
-      - jsonPath: "$.id"
-        exists: true
+tasks:
+  - name: Login with user's credential
+    uses: fetch
+    file: "./req-login.chk"
 
-  - name: Get User
-    request:
-      url: https://api.example.com/users/{{userId}}
-      method: GET
-    assertions:
-      - status: 200
-      - jsonPath: "$.name"
-        equals: "John Doe"`}
+  - name: Get user's me
+    uses: fetch
+    file: "./req-user-me.chk"
+    variables:
+      AccessToken: <% _steps.0._response.body.accessToken %>
+
+  - name: Create a post
+    uses: fetch
+    file: "./req-post-create.chk"
+    variables:
+      AccessToken: <% _steps.0._response.body.accessToken %>
+
+expose:
+  - <% _steps %>`}
                   </pre>
                 </div>
               </div>
@@ -154,20 +158,27 @@ tests:
                   initial={{ opacity: 1 }}
                   whileInView={{ opacity: [1, 0.95, 1] }}
                   viewport={{ once: false }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 4 }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatDelay: 4,
+                  }}
                 >
                   <pre className="text-green-400 text-sm font-mono">
-{`$ chk run api-tests.yaml
+                    {`$ chk workflow Workflow-User-Post-Create.chk
 
-✓ GET /users - 200 OK (45ms)
-✓ POST /users - 201 Created (120ms)
-✓ GET /users/123 - 200 OK (38ms)
-✓ PUT /users/123 - 200 OK (90ms)
-✓ DELETE /users/123 - 204 No Content (42ms)
 
-Tests: 5 passed, 0 failed
-Assertions: 18 passed, 0 failed
-Total time: 335ms`}
+Workflow:
+Steps total: 3, failed: 0
+------
++ [PASS] Task: Login with user's credential
+>> POST https://dummyjson.com/user/login
+------
++ [PASS] Task: Get user's me
+>> GET https://dummyjson.com/user/me
+------
++ [PASS] Task: Create a post
+>> POST https://dummyjson.com/posts/add`}
                   </pre>
                 </motion.div>
               </div>
@@ -189,29 +200,41 @@ Total time: 335ms`}
               Simple, Powerful, Flexible
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              CHKware streamlines the API testing process with a human-readable configuration format and powerful validation capabilities. No complex programming required.
+              CHKware streamlines the API testing process with a human-readable
+              configuration format and powerful validation capabilities. No
+              complex programming required.
             </p>
             <ul className="space-y-3 mb-8">
               {[
                 "Write tests in YAML for readability and ease of use",
                 "Validate responses with JSONPath expressions",
                 "Chain requests for comprehensive workflow testing",
-                "Export results as HTML, JSON, or JUnit reports"
+                "Export results as HTML, JSON, or JUnit reports",
               ].map((item, index) => (
                 <li key={index} className="flex items-start">
                   <div className="flex-shrink-0 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-2 mt-0.5">
-                    <svg className="h-3 w-3 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="h-3 w-3 text-green-600 dark:text-green-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={3}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   </div>
-                  <span className="text-gray-600 dark:text-gray-300">{item}</span>
+                  <span className="text-gray-600 dark:text-gray-300">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>
             <Button asChild>
-              <Link href="/docs">
-                View Documentation
-              </Link>
+              <Link href="/docs">View Documentation</Link>
             </Button>
           </motion.div>
 
@@ -229,26 +252,54 @@ Total time: 335ms`}
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center mr-3">
-                    <svg className="h-4 w-4 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      className="h-4 w-4 text-blue-600 dark:text-blue-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
                   </div>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white">Low-code approach</span>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Everyone on your team can write and maintain tests, not just developers</p>
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      Low-code approach
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Everyone on your team can write and maintain tests, not
+                      just developers
+                    </p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-green-100 dark:bg-green-900/40 flex items-center justify-center mr-3">
-                    <svg className="h-4 w-4 text-green-600 dark:text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      className="h-4 w-4 text-green-600 dark:text-green-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <circle cx="12" cy="12" r="10"></circle>
                       <line x1="12" y1="8" x2="12" y2="12"></line>
                       <line x1="12" y1="16" x2="12.01" y2="16"></line>
                     </svg>
                   </div>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white">Comprehensive validation</span>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Deep validation capabilities that go beyond simple status code checks</p>
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      Comprehensive validation
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Deep validation capabilities that go beyond simple status
+                      code checks
+                    </p>
                   </div>
                 </li>
               </ul>
