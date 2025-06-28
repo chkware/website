@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, ExternalLink } from "lucide-react";
+import { ArrowRight, Code } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -87,20 +87,20 @@ export function HeroSection() {
                 </div>
                 <pre className="bg-gray-900 p-4 rounded-b-lg text-xs sm:text-sm overflow-auto text-gray-100">
                   <code>
-                    {`# Do a Login request
+                    {`# Get joke 614 from XKCD.com
 ---
 version: default:http:0.7.2
 
 request:
-  url: https://myserver.com/user/login
-  method: POST
-
-  body[json]:
-    username: emilys
-    password: emilyspass
+  url: "https://xkcd.com/614/info.0.json"
+  method: GET
 
 expose:
-  - <% _response %>`}
+  - <% _response %>
+
+
+
+`}
                   </code>
                 </pre>
               </div>
