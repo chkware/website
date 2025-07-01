@@ -4,12 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/Container";
 import { ArrowRight, Code } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-black pt-28 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6">
-      <div className="relative mx-auto max-w-6xl">
+    <section className="relative overflow-hidden bg-white dark:bg-black pt-36 pb-24 md:pt-56 md:pb-40">
+      <Container size="large" className="relative">
         {/* Background decorations */}
         <div className="absolute -z-10 -top-24 right-0 left-0 w-full h-full overflow-hidden opacity-30 dark:opacity-20 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl"></div>
@@ -50,7 +51,7 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-              <Button asChild className="px-6 py-2 h-12 text-base">
+              <Button asChild className="px-6 py-2 h-12 text-base border border-gray-700 dark:border-gray-600 bg-black/90 backdrop-filter backdrop-blur-sm">
                 <Link href="/docs/getting-started">
                   Get Started <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -58,7 +59,7 @@ export function HeroSection() {
               <Button
                 asChild
                 variant="outline"
-                className="px-6 py-2 h-12 text-base gap-2"
+                className="px-6 py-2 h-12 text-base gap-2 dark:text-gray-800"
               >
                 <Link href="#demo" className="flex items-center">
                   <Code className="h-5 w-5" />
@@ -76,7 +77,7 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div className="relative">
-              <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-2xl">
+              <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
                 <div className="bg-gray-100 dark:bg-gray-800 p-1 flex items-center space-x-1">
                   <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
                   <div className="h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
@@ -99,14 +100,13 @@ expose:
   - <% _response %>
 
 
-
 `}
                   </code>
                 </pre>
               </div>
 
               {/* Floating status badge */}
-              <div className="absolute -bottom-8 -left-12 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-lg border border-gray-200 dark:border-gray-800 text-center w-60 animate-fadeInUp-delay-2">
+              <div className="absolute -bottom-8 -left-12 rounded-lg bg-white dark:bg-gray-900 p-4 border border-gray-200 dark:border-gray-800 text-center w-60 animate-fadeInUp-delay-2">
                 <div className="flex justify-between items-center mb-2">
                   <div className="h-10 w-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
                     <svg
@@ -133,7 +133,7 @@ expose:
               </div>
 
               {/* Floating YAML badge */}
-              <div className="absolute -top-6 -right-6 rounded-lg bg-white dark:bg-gray-900 p-3 shadow-lg border border-gray-200 dark:border-gray-800 text-center animate-fadeInUp-delay-1">
+              <div className="absolute -top-6 -right-6 rounded-lg bg-white dark:bg-gray-900 p-3 border border-gray-200 dark:border-gray-800 text-center animate-fadeInUp-delay-1">
                 <div className="font-medium text-sm text-gray-800 dark:text-gray-200">
                   Low-code
                 </div>
@@ -144,7 +144,7 @@ expose:
             </div>
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

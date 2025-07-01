@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
+import { Container } from "@/components/ui/Container";
 import { BookOpenIcon, BookmarkIcon, GraduationCapIcon, UsersIcon } from "lucide-react";
 
 const resources = [
@@ -39,8 +40,8 @@ const resources = [
 
 export function ResourcesSection() {
   return (
-    <section className="py-24 px-4 sm:px-6 bg-white dark:bg-black">
-      <div className="mx-auto max-w-6xl">
+    <section className="py-24 bg-white dark:bg-black">
+      <Container size="large">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">
             Resources & Documentation
@@ -61,7 +62,7 @@ export function ResourcesSection() {
               whileHover={{ y: -5 }}
             >
               <Link href={resource.link} className="block h-full">
-                <Card className="h-full overflow-hidden border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 hover:shadow-md">
+                <Card className="h-full overflow-hidden border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200">
                   <div className="p-6">
                     <div className={`w-14 h-14 rounded-lg ${resource.color} flex items-center justify-center mb-5`}>
                       {resource.icon}
@@ -81,7 +82,7 @@ export function ResourcesSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

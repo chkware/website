@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Container } from "@/components/ui/Container";
 import { FileCode, Play, HardDrive, Box } from "lucide-react";
 import Link from "next/link";
 
@@ -36,8 +37,8 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 bg-white dark:bg-black">
-      <div className="mx-auto max-w-6xl">
+    <section className="py-24 bg-white dark:bg-black">
+      <Container size="large">
         <div className="text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4"
@@ -102,7 +103,7 @@ export function HowItWorksSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="relative h-full">
-              <div className="rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 h-full flex flex-col">
+              <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 h-full flex flex-col">
                 <div className="bg-gray-800 text-white p-2 text-sm font-mono flex items-center">
                   <FileCode className="h-4 w-4 mr-2" />
                   Workflow-User-Post-Create.chk
@@ -148,7 +149,7 @@ expose:
             transition={{ duration: 0.6 }}
           >
             <div className="relative h-full">
-              <div className="rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 h-full flex flex-col">
+              <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 h-full flex flex-col">
                 <div className="bg-gray-800 text-white p-2 text-sm font-mono flex items-center">
                   <Play className="h-4 w-4 mr-2" />
                   Terminal
@@ -305,7 +306,7 @@ Steps total: 3, failed: 0
             </Card>
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

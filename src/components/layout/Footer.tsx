@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { Github, Twitter, Linkedin, Mail, Heart } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/logo";
 
 // Footer link group type
 type FooterLinkGroup = {
@@ -91,7 +93,7 @@ function FooterLink({ href, children, isExternal }: { href: string; children: Re
 export function Footer() {
   return (
     <footer className="bg-white dark:bg-black border-t border-neutral-200 dark:border-neutral-800">
-      <div className="mx-auto max-w-[1200px] px-6 pt-12 pb-8">
+      <Container size="large" className="pt-12 pb-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-10">
           {footerLinks.map((group) => (
             <div key={group.title}>
@@ -120,9 +122,7 @@ export function Footer() {
         <div className="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col sm:flex-row items-center mb-6 md:mb-0">
-              <span className="text-xl font-bold bg-gradient-to-r from-[#0070f3] to-[#00a2ff] bg-clip-text text-transparent mr-3">
-                CHKware
-              </span>
+              <Logo className="h-8 w-auto mr-3" />
               <div className="flex items-center mt-3 sm:mt-0">
                 <span className="text-sm text-neutral-500 dark:text-neutral-400">
                   &copy; {new Date().getFullYear()} CHKware. All rights reserved.
@@ -171,7 +171,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

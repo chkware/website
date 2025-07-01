@@ -29,37 +29,40 @@ export function FeatureCard({
         ease: "easeOut"
       }}
       viewport={{ once: true }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ y: -5 }}
+      className="h-full"
     >
       <Card className={cn(
-        "h-full overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6",
-        "transition-all duration-300 hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-700",
+        "h-full overflow-hidden border border-gray-100 dark:border-gray-800",
+        "bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-8",
+        "transition-all duration-300 hover:border-gray-100 dark:hover:border-gray-700",
         "group relative",
+        "flex flex-col",
         className
       )}>
-        {/* Gradient accent */}
-        <div className="absolute inset-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+        {/* Background effect */}
+        <div className="absolute inset-0 bg-white dark:bg-gray-900 -z-10" />
 
         {/* Icon container */}
         {icon && (
-          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-100 transition-colors duration-300">
-            {icon}
+          <div className="mb-6 relative">
+            {/* Icon with no background or shadow */}
+            <div className="text-gray-600 dark:text-gray-300">
+              {React.cloneElement(icon as React.ReactElement, { className: 'h-16 w-16' })}
+            </div>
           </div>
         )}
 
         {/* Content */}
-        <div className="space-y-2">
-          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{title}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{description}</p>
+        <div className="space-y-3 flex-grow">
+          <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {title}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+            {description}
+          </p>
         </div>
 
-        {/* Hover indicator */}
-        <div className="mt-6 flex items-center text-sm font-medium text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          Learn more
-          <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
       </Card>
     </motion.div>
   );

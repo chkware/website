@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
+import { Container } from "@/components/ui/Container";
 import { ExternalLink } from "lucide-react";
 
 const integrations = [
@@ -48,8 +49,8 @@ const integrations = [
 
 export function IntegrationsSection() {
   return (
-    <section className="py-24 px-4 sm:px-6 bg-gray-50 dark:bg-gray-900">
-      <div className="mx-auto max-w-6xl">
+    <section className="py-24 bg-gray-50 dark:bg-gray-900">
+      <Container size="large">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +77,7 @@ export function IntegrationsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Link href={integration.link}>
-                <Card className="h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300 flex flex-col">
+                <Card className="h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 transition-all duration-300 flex flex-col">
                   <div className="flex items-start mb-4">
                     <div className="h-12 w-12 relative mr-4 flex-shrink-0">
                       <Image
@@ -124,7 +125,7 @@ export function IntegrationsSection() {
             </Link>
           </p>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }
