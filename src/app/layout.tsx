@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/lib/theme-context";
+import { BackgroundElements } from "@/components/ui/BackgroundElements";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -32,7 +33,7 @@ export default function RootLayout({
                   var theme = localStorage.getItem('chkware-theme');
                   var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                   var isDark = theme === 'dark' || (!theme && systemDark);
-                  
+
                   if (isDark) {
                     document.documentElement.classList.add('dark');
                   } else {
@@ -44,7 +45,8 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
+      <body className={`${inter.className} antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
+        <BackgroundElements />
         <ThemeProvider>
           <Navbar />
           <main className="min-h-screen">{children}</main>

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 interface FeatureCardProps {
   title: string;
   description: string;
-  icon?: React.ReactNode;
+  icon?: React.ReactElement & { props: { className?: string } };
   className?: string;
   delay?: number;
 }
@@ -48,7 +48,7 @@ export function FeatureCard({
           <div className="mb-6 relative">
             {/* Icon with no background or shadow */}
             <div className="text-gray-600 dark:text-gray-300">
-              {React.cloneElement(icon as React.ReactElement, { className: 'h-16 w-16' })}
+              {React.cloneElement(icon, { className: 'h-16 w-16' })}
             </div>
           </div>
         )}

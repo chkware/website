@@ -19,7 +19,7 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
   storageKey = "chkware-theme",
 }: ThemeProviderProps) {
   const [mounted, setMounted] = useState(false);
@@ -29,31 +29,31 @@ export function ThemeProvider({
     return stored || defaultTheme;
   });
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window === 'undefined') return 'light';
+    if (typeof window === 'undefined') return 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
   // Get system theme
   const getSystemTheme = useCallback((): 'light' | 'dark' => {
-    if (typeof window === 'undefined') return 'light';
+    if (typeof window === 'undefined') return 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }, []);
 
   // Apply theme class to document element
   const applyTheme = useCallback((themeToApply: Theme) => {
-    if (typeof window === 'undefined') return 'light';
-    
+    if (typeof window === 'undefined') return 'dark';
+
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
-    
+
     let themeClass: 'light' | 'dark';
-    
+
     if (themeToApply === 'system') {
       themeClass = getSystemTheme();
     } else {
       themeClass = themeToApply;
     }
-    
+
     root.classList.add(themeClass);
     return themeClass;
   }, [getSystemTheme]);
@@ -61,12 +61,12 @@ export function ThemeProvider({
   // Initialize theme on mount
   useEffect(() => {
     setMounted(true);
-    
+
     // Apply the current theme
     const themeToApply = theme;
     const newResolvedTheme = applyTheme(themeToApply);
     setResolvedTheme(newResolvedTheme);
-    
+
     // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemThemeChange = () => {
@@ -75,7 +75,7 @@ export function ThemeProvider({
         setResolvedTheme(newTheme);
       }
     };
-    
+
     mediaQuery.addEventListener('change', handleSystemThemeChange);
     return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
   }, [applyTheme, theme]);
@@ -83,7 +83,7 @@ export function ThemeProvider({
   // Update theme when it changes
   useEffect(() => {
     if (!mounted) return;
-    
+
     localStorage.setItem(storageKey, theme);
     const newResolvedTheme = applyTheme(theme);
     setResolvedTheme(newResolvedTheme);

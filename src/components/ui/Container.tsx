@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  size?: "default" | "small" | "large";
+  size?: "default" | "small" | "large" | "blog";
 }
 
 export function Container({
@@ -20,6 +20,7 @@ export function Container({
           "max-w-5xl": size === "small",
           "max-w-6xl": size === "default",
           "max-w-7xl": size === "large",
+          "max-w-3xl": size === "blog",
         },
         className
       )}

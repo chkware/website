@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, Github, Menu, X, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search, Github, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/Container";
