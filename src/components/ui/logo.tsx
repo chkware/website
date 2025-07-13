@@ -13,8 +13,8 @@ interface LogoProps {
 export function Logo({ className, width = 177.3, height = 42 }: LogoProps) {
   const { resolvedTheme } = useTheme();
   const logoSrc = resolvedTheme === 'dark'
-    ? "/images/logo-dark-mode.png"
-    : "/images/logo-img.png";
+    ? "/images/logos/logo-white.png"
+    : "/images/logos/logo-dark.png";
 
   return (
     <Image

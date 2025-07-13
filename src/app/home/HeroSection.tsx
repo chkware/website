@@ -59,7 +59,7 @@ export function HeroSection() {
               <Button
                 asChild
                 variant="outline"
-                className="px-6 py-2 h-12 text-base gap-2 dark:text-gray-800"
+                className="px-6 py-2 h-12 text-base gap-2 dark:text-white"
               >
                 <Link href="#demo" className="flex items-center">
                   <Code className="h-5 w-5" />

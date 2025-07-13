@@ -1,5 +1,30 @@
 @import "tailwindcss";
 
+/* Define font faces */
+@font-face {
+  font-family: 'Supreme';
+  src: url('/font/Supreme-Variable.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Supreme';
+  src: url('/font/Supreme-Variable.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Tailwind CSS v4 theme configuration */
+@theme {
+  --font-sans: 'Supreme', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @layer base {

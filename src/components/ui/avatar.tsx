@@ -52,6 +52,7 @@ const AvatarImage = React.forwardRef<
         status === "loading" && "animate-pulse bg-gray-200 dark:bg-gray-800",
         className
       )}
+      alt="Avatar"
       {...props}
     />
   );

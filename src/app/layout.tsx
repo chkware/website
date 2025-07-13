@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/lib/theme-context";
 import { BackgroundElements } from "@/components/ui/BackgroundElements";
+import { MDXComponents } from "@/components/mdx-components";
 import "@/styles/globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-inter',
+// Load the Supreme variable font
+const supreme = localFont({
+  src: [
+    {
+      path: '../../src/fonts/Supreme-Variable.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-supreme',
 });
 
 export const metadata: Metadata = {
@@ -45,12 +53,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
+      <body className={`${supreme.variable} font-sans antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
         <BackgroundElements />
         <ThemeProvider>
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <MDXComponents>
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </MDXComponents>
         </ThemeProvider>
       </body>
     </html>

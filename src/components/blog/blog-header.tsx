@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { ArrowLeft, Calendar, Clock, User, Bookmark } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Bookmark, Tag, Users, Archive } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
@@ -50,8 +50,31 @@ export function BlogHeader({
                 href="/blog"
                 className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
               >
-                Back to Blog
+                Blog Home
               </Link>
+              <div className="hidden md:flex items-center space-x-4">
+                <Link
+                  href="/blog/tags"
+                  className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors flex items-center"
+                >
+                  <Tag className="h-3.5 w-3.5 mr-1.5" />
+                  Tags
+                </Link>
+                <Link
+                  href="/blog/authors"
+                  className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors flex items-center"
+                >
+                  <Users className="h-3.5 w-3.5 mr-1.5" />
+                  Authors
+                </Link>
+                <Link
+                  href="/blog/archive"
+                  className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors flex items-center"
+                >
+                  <Archive className="h-3.5 w-3.5 mr-1.5" />
+                  Archive
+                </Link>
+              </div>
             </div>
           </div>
         </Container>

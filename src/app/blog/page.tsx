@@ -1,27 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { blogPosts } from "@/data/blog-posts";
 import { BlogPostCard } from "@/components/ui/blog-post-card";
 import { FeaturedBlogSection } from "@/components/blog/featured-blog-section";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Tag, Users, Calendar } from "lucide-react";
+import { getAllBlogPosts, BlogPost } from "@/lib/blog-utils";
+import Link from "next/link";
 
 export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const postsPerPage = 6;
 
-  // Sort posts by date (newest first)
-  const sortedPosts = [...blogPosts].sort((a, b) =>
-    new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  // Load blog posts
+  useEffect(() => {
+    // Get all blog posts
+    const posts = getAllBlogPosts();
+    setBlogPosts(posts);
+    setIsLoading(false);
+  }, []);
 
-  // Get featured post (most recent)
-  const featuredPost = sortedPosts[0];
-
-  // Get remaining posts for pagination
-  const remainingPosts = sortedPosts.slice(1);
+  // Get featured post (most recent) and remaining posts
+  const featuredPost = blogPosts.length > 0 ? blogPosts[0] : null;
+  const remainingPosts = blogPosts.length > 0 ? blogPosts.slice(1) : [];
 
   // Calculate total pages
   const totalPages = Math.ceil(remainingPosts.length / postsPerPage);
@@ -33,6 +37,29 @@ export default function BlogPage() {
 
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-500"></div>
+      </div>
+    );
+  }
+
+  // No posts state
+  if (blogPosts.length === 0) {
+    return (
+      <Container size="large" className="py-32">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">No Blog Posts Found</h1>
+          <p className="text-gray-600 dark:text-gray-300 mb-8">
+            There are no blog posts available at the moment. Please check back later.
+          </p>
+        </div>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -48,9 +75,34 @@ export default function BlogPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Our Blog
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Latest news, updates, and insights about CHKware and API testing
             </p>
+
+            {/* Blog Navigation */}
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <Link
+                href="/blog/tags"
+                className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <Tag className="h-4 w-4 mr-2" />
+                <span>Browse by Tags</span>
+              </Link>
+              <Link
+                href="/blog/authors"
+                className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <Users className="h-4 w-4 mr-2" />
+                <span>Meet Our Authors</span>
+              </Link>
+              <Link
+                href="/blog/archive"
+                className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <Calendar className="h-4 w-4 mr-2" />
+                <span>Archive</span>
+              </Link>
+            </div>
           </motion.div>
         </Container>
 
@@ -62,20 +114,22 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Post Section */}
-      <FeaturedBlogSection
-        featuredPost={{
-          title: featuredPost.title,
-          excerpt: featuredPost.excerpt,
-          authorName: featuredPost.author.name,
-          authorImageSrc: featuredPost.author.avatar,
-          publicationDate: featuredPost.date,
-          readTimeMinutes: featuredPost.readingTime,
-          slug: featuredPost.slug,
-          imageUrl: featuredPost.coverImage,
-          heroImageAlt: featuredPost.title
-        }}
-        className="border-b border-gray-100 dark:border-gray-800"
-      />
+      {featuredPost && (
+        <FeaturedBlogSection
+          featuredPost={{
+            title: featuredPost.title,
+            excerpt: featuredPost.description,
+            authorName: featuredPost.authors[0]?.name || "Unknown",
+            authorImageSrc: featuredPost.authors[0]?.image_url || "/images/placeholder.svg",
+            publicationDate: featuredPost.date,
+            readTimeMinutes: featuredPost.readingTime,
+            slug: featuredPost.slug,
+            imageUrl: featuredPost.image || "",
+            heroImageAlt: featuredPost.title
+          }}
+          className="border-b border-gray-100 dark:border-gray-800"
+        />
+      )}
 
       {/* Latest Articles */}
       <section className="py-12 bg-white dark:bg-black">
@@ -96,13 +150,13 @@ export default function BlogPage() {
               >
                 <BlogPostCard
                   title={post.title}
-                  excerpt={post.excerpt}
-                  authorName={post.author.name}
-                  authorImageSrc={post.author.avatar}
+                  excerpt={post.description}
+                  authorName={post.authors[0]?.name || "Unknown"}
+                  authorImageSrc={post.authors[0]?.image_url || "/images/placeholder.svg"}
                   publicationDate={post.date}
                   readTimeMinutes={post.readingTime}
                   slug={post.slug}
-                  thumbnailUrl={post.coverImage}
+                  thumbnailUrl={post.image || ""}
                   tags={post.tags}
                 />
               </motion.div>

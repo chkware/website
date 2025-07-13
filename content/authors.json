@@ -1,0 +1,38 @@
+{
+  "johnDoe": {
+    "id": "johnDoe",
+    "name": "John Doe",
+    "title": "Lead Developer",
+    "url": "https://github.com/johndoe",
+    "image_url": "/images/authors/john-doe.jpg",
+    "email": "john@example.com",
+    "twitter": "johndoe",
+    "github": "johndoe",
+    "linkedin": "johndoe",
+    "bio": "John is a lead developer with over 10 years of experience in API development and testing. He specializes in creating robust testing frameworks and automation tools."
+  },
+  "janeDoe": {
+    "id": "janeDoe",
+    "name": "Jane Doe",
+    "title": "API Specialist",
+    "url": "https://github.com/janedoe",
+    "image_url": "/images/authors/jane-doe.jpg",
+    "email": "jane@example.com",
+    "twitter": "janedoe",
+    "github": "janedoe",
+    "linkedin": "janedoe",
+    "bio": "Jane is an API specialist with expertise in RESTful and GraphQL APIs. She focuses on API design, documentation, and testing methodologies."
+  },
+  "bobSmith": {
+    "id": "bobSmith",
+    "name": "Bob Smith",
+    "title": "QA Engineer",
+    "url": "https://github.com/bobsmith",
+    "image_url": "/images/authors/bob-smith.jpg",
+    "email": "bob@example.com",
+    "twitter": "bobsmith",
+    "github": "bobsmith",
+    "linkedin": "bobsmith",
+    "bio": "Bob is a QA engineer with a passion for ensuring software quality. He has extensive experience in test automation, CI/CD integration, and performance testing."
+  }
+}

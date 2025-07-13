@@ -1,83 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { BlogPost } from "@/data/blog-posts";
+import { BlogPost } from "@/lib/blog-utils";
 
-// Import new components
+// Import components
 import { BlogHeader } from "@/components/blog/blog-header";
 import { BlogContentBody } from "@/components/blog/blog-content-body";
 import { AuthorBio } from "@/components/blog/author-bio";
 import { RelatedPosts } from "@/components/blog/related-posts";
-
-interface RelatedPost {
-  title: string;
-  excerpt: string;
-  authorName: string;
-  authorImageSrc: string;
-  publicationDate: string;
-  readTimeMinutes: string;
-  slug: string;
-  thumbnailUrl?: string;
-  tags?: string[];
-}
+// Note: MDX components are now handled by the Next.js MDX integration
+// See next.config.js for configuration
 
 interface BlogPostClientProps {
-  blogPosts: BlogPost[];
+  post: BlogPost;
+  relatedPosts: BlogPost[];
 }
 
-export function BlogPostClient({ blogPosts }: BlogPostClientProps) {
-  const params = useParams();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Find the post that matches the slug
-    const slug = params?.slug as string;
-    if (!slug) return;
-
-    // Find post with matching slug
-    const foundPost = blogPosts.find(post => post.slug === slug);
-
-    if (foundPost) {
-      setPost(foundPost);
-
-      // Find related posts (posts with at least one matching tag)
-      const related = blogPosts
-        .filter(p =>
-          p.id !== foundPost.id &&
-          p.tags.some(tag => foundPost.tags.includes(tag))
-        )
-        .slice(0, 3) // Limit to 3 related posts
-        .map(p => ({
-          title: p.title,
-          excerpt: p.excerpt,
-          authorName: p.author.name,
-          authorImageSrc: p.author.avatar,
-          publicationDate: p.date,
-          readTimeMinutes: p.readingTime,
-          slug: p.slug,
-          thumbnailUrl: p.coverImage,
-          tags: p.tags
-        }));
-
-      setRelatedPosts(related);
-    }
-
-    setIsLoading(false);
-  }, [params, blogPosts]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-500"></div>
-      </div>
-    );
-  }
-
+export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
   if (!post) {
     return (
       <Container size="large" className="py-32">
@@ -95,23 +36,39 @@ export function BlogPostClient({ blogPosts }: BlogPostClientProps) {
     );
   }
 
-  // Prepare author links (example - in a real app, these would come from the data)
-  const authorLinks = [
-    { type: "twitter", url: "https://twitter.com" },
-    { type: "github", url: "https://github.com" }
-  ];
+  // Prepare author links from author data
+  const authorLinks = post.authors.map(author => {
+    const links = [];
+    if (author.twitter) links.push({ type: "twitter", url: `https://twitter.com/${author.twitter}` });
+    if (author.github) links.push({ type: "github", url: `https://github.com/${author.github}` });
+    if (author.linkedin) links.push({ type: "linkedin", url: `https://linkedin.com/in/${author.linkedin}` });
+    return links;
+  }).flat();
+
+  // Format related posts for the RelatedPosts component
+  const formattedRelatedPosts = relatedPosts.map(relatedPost => ({
+    title: relatedPost.title,
+    excerpt: relatedPost.description,
+    authorName: relatedPost.authors[0]?.name || "Unknown",
+    authorImageSrc: relatedPost.authors[0]?.image_url || "/images/placeholder.svg",
+    publicationDate: relatedPost.date,
+    readTimeMinutes: relatedPost.readingTime,
+    slug: relatedPost.slug,
+    thumbnailUrl: relatedPost.image,
+    tags: relatedPost.tags
+  }));
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
       {/* Blog Header */}
       <BlogHeader
         title={post.title}
-        authorName={post.author.name}
-        authorImageSrc={post.author.avatar}
-        authorRole={post.author.role}
+        authorName={post.authors[0]?.name || "Unknown"}
+        authorImageSrc={post.authors[0]?.image_url || "/images/placeholder.svg"}
+        authorRole={post.authors[0]?.title || "Author"}
         publicationDate={post.date}
         readTimeMinutes={post.readingTime}
-        coverImageSrc={post.coverImage}
+        coverImageSrc={post.image || ""}
       />
 
       {/* Blog Content */}
@@ -119,17 +76,17 @@ export function BlogPostClient({ blogPosts }: BlogPostClientProps) {
 
       {/* Author Bio */}
       <AuthorBio
-        authorName={post.author.name}
-        authorImageSrc={post.author.avatar}
-        authorRole={post.author.role}
-        authorBio="Writer and developer passionate about creating great content and tools for the community."
+        authorName={post.authors[0]?.name || "Unknown"}
+        authorImageSrc={post.authors[0]?.image_url || "/images/placeholder.svg"}
+        authorRole={post.authors[0]?.title || "Author"}
+        authorBio={post.authors[0]?.bio || "Writer and developer passionate about creating great content and tools for the community."}
         authorLinks={authorLinks}
         className="mt-8"
       />
 
       {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <RelatedPosts posts={relatedPosts} className="mt-12" />
+      {formattedRelatedPosts.length > 0 && (
+        <RelatedPosts posts={formattedRelatedPosts} className="mt-12" />
       )}
     </div>
   );

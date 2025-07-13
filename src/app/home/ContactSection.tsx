@@ -9,7 +9,7 @@ import { Mail, MessageSquare, Phone, Send } from "lucide-react";
 
 export function ContactSection() {
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-900">
+    <section className="py-24 bg-gray-50 dark:bg-black">
       <Container size="large">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">
@@ -29,7 +29,7 @@ export function ContactSection() {
             viewport={{ once: true }}
             className="order-2 md:order-2"
           >
-            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden p-8">
+            <Card className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden p-8">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Send us a message
               </h3>
@@ -46,7 +46,7 @@ export function ContactSection() {
                     <input
                       type="text"
                       id="name"
-                      className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                      className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                       placeholder="Your name"
                     />
                   </div>
@@ -60,7 +60,7 @@ export function ContactSection() {
                     <input
                       type="email"
                       id="email"
-                      className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                      className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -76,7 +76,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     id="subject"
-                    className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     placeholder="How can we help?"
                   />
                 </div>
@@ -91,7 +91,7 @@ export function ContactSection() {
                   <textarea
                     id="message"
                     rows={4}
-                    className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 p-3 text-sm text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     placeholder="Your message here..."
                   ></textarea>
                 </div>
@@ -112,7 +112,7 @@ export function ContactSection() {
             viewport={{ once: true }}
             className="space-y-6 order-1 md:order-1"
           >
-            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden p-6">
+            <Card className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
@@ -136,7 +136,7 @@ export function ContactSection() {
               </div>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden p-6">
+            <Card className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900 flex items-center justify-center">
@@ -160,7 +160,7 @@ export function ContactSection() {
               </div>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden p-6">
+            <Card className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center">

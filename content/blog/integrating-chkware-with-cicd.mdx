@@ -1,0 +1,151 @@
+---
+title: Integrating CHKware with CI/CD Pipelines
+date: 2025-06-29
+authors: [bobSmith]
+tags: [CI/CD, DevOps, Automation]
+description: Learn how to integrate CHKware with popular CI/CD platforms like GitHub Actions, GitLab CI, and Jenkins for automated API testing.
+image: /images/blog/cicd.jpg
+draft: false
+---
+
+import { Callout } from '@/components/ui/callout';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+# Integrating CHKware with CI/CD Pipelines
+
+Automating your API tests as part of your CI/CD pipeline is essential for maintaining API quality. In this guide, we'll show you how to integrate CHKware with popular CI/CD platforms.
+
+<Callout type="info">
+  This guide assumes you already have CHKware tests set up for your API. If you're new to CHKware, check out our [Getting Started guide](/blog/getting-started-with-chkware).
+</Callout>
+
+## CI/CD Integration Options
+
+<Tabs defaultValue="github">
+  <TabsList>
+    <TabsTrigger value="github">GitHub Actions</TabsTrigger>
+    <TabsTrigger value="gitlab">GitLab CI</TabsTrigger>
+    <TabsTrigger value="jenkins">Jenkins</TabsTrigger>
+    <TabsTrigger value="circle">CircleCI</TabsTrigger>
+  </TabsList>
+
+  <TabsContent value="github">
+    ### GitHub Actions
+
+    To integrate with GitHub Actions, create a workflow file at `.github/workflows/api-tests.yml`:
+
+    ```yaml
+    name: API Tests
+
+    on:
+      push:
+        branches: [ main ]
+      pull_request:
+        branches: [ main ]
+
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v2
+          - name: Setup Node.js
+            uses: actions/setup-node@v2
+            with:
+              node-version: '16'
+          - name: Install CHKware
+            run: npm install -g chkware
+          - name: Run API Tests
+            run: chk run tests/ --reporter github
+    ```
+  </TabsContent>
+
+  <TabsContent value="gitlab">
+    ### GitLab CI
+
+    For GitLab CI, create a `.gitlab-ci.yml` file:
+
+    ```yaml
+    stages:
+      - test
+
+    api_tests:
+      stage: test
+      image: node:16
+      script:
+        - npm install -g chkware
+        - chk run tests/ --reporter gitlab
+    ```
+  </TabsContent>
+
+  <TabsContent value="jenkins">
+    ### Jenkins
+
+    For Jenkins, you can create a Jenkinsfile:
+
+    ```groovy
+    pipeline {
+        agent {
+            docker {
+                image 'node:16'
+            }
+        }
+        stages {
+            stage('Test') {
+                steps {
+                    sh 'npm install -g chkware'
+                    sh 'chk run tests/ --reporter jenkins'
+                }
+            }
+        }
+        post {
+            always {
+                archiveArtifacts artifacts: 'chkware-report.xml', fingerprint: true
+                junit 'chkware-report.xml'
+            }
+        }
+    }
+    ```
+  </TabsContent>
+
+  <TabsContent value="circle">
+    ### CircleCI
+
+    For CircleCI, create a `.circleci/config.yml` file:
+
+    ```yaml
+    version: 2.1
+    jobs:
+      test:
+        docker:
+          - image: cimg/node:16.13
+        steps:
+          - checkout
+          - run:
+              name: Install CHKware
+              command: npm install -g chkware
+          - run:
+              name: Run API Tests
+              command: chk run tests/ --reporter circle
+          - store_artifacts:
+              path: ./chkware-report.json
+
+    workflows:
+      version: 2
+      build_and_test:
+        jobs:
+          - test
+    ```
+  </TabsContent>
+</Tabs>
+
+## Best Practices
+
+When integrating CHKware with CI/CD pipelines, consider these best practices:
+
+1. **Environment Management**: Use environment-specific configuration files for different environments (dev, staging, prod).
+2. **Parallelization**: For large test suites, run tests in parallel to speed up the pipeline.
+3. **Reporting**: Use the appropriate reporter for your CI/CD platform to get nicely formatted test results.
+4. **Artifacts**: Store test reports as artifacts for later analysis.
+5. **Notifications**: Configure notifications for test failures.
+
+By following these guidelines, you can create a robust API testing pipeline that catches issues early in the development process.

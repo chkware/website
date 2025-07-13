@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowUp, Check, Link as LinkIcon, List, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
@@ -216,7 +218,6 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
           // Handle headings with anchor links
           if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(domNode.name)) {
             const id = domNode.attribs.id || '';
-            const level = parseInt(domNode.name.substring(1));
             const headingClasses = {
               h1: "text-3xl font-bold mt-12 mb-6",
               h2: "text-2xl font-bold mt-10 mb-4",
