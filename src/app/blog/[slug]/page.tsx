@@ -12,8 +12,9 @@ export async function generateStaticParams() {
 }
 
 // Define metadata for the page
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getBlogPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
     return {
@@ -51,8 +52,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 // Define the page component
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -62,7 +64,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   const related = getRelatedPosts(post);
 
   // Get the full URL for the current page
-  const url = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://chkware.com'}/blog/${params.slug}/`;
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://chkware.com'}/blog/${slug}/`;
 
   return (
     <>

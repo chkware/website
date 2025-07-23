@@ -1,0 +1,98 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#ffffff" rx="12"/>
+  
+  <!-- Developer figure -->
+  <g transform="translate(80, 60)">
+    <!-- Head -->
+    <circle cx="40" cy="30" r="15" fill="#000000" opacity="0.2"/>
+    
+    <!-- Body -->
+    <rect x="30" y="45" width="20" height="40" fill="#000000" opacity="0.15" rx="10"/>
+    
+    <!-- Arms -->
+    <rect x="15" y="55" width="15" height="8" fill="#000000" opacity="0.15" rx="4"/>
+    <rect x="50" y="55" width="15" height="8" fill="#000000" opacity="0.15" rx="4"/>
+    
+    <!-- Legs -->
+    <rect x="32" y="85" width="6" height="25" fill="#000000" opacity="0.15" rx="3"/>
+    <rect x="42" y="85" width="6" height="25" fill="#000000" opacity="0.15" rx="3"/>
+    
+    <!-- Laptop -->
+    <rect x="10" y="65" width="30" height="20" fill="#000000" opacity="0.3" rx="2"/>
+    <rect x="12" y="67" width="26" height="12" fill="#ffffff" opacity="0.8" rx="1"/>
+    
+    <!-- Code lines on screen -->
+    <line x1="14" y1="70" x2="22" y2="70" stroke="#000000" stroke-width="1" opacity="0.4"/>
+    <line x1="14" y1="73" x2="28" y2="73" stroke="#000000" stroke-width="1" opacity="0.4"/>
+    <line x1="14" y1="76" x2="25" y2="76" stroke="#000000" stroke-width="1" opacity="0.4"/>
+  </g>
+  
+  <!-- Fast-forward arrows -->
+  <g transform="translate(200, 100)">
+    <polygon points="0,20 20,10 20,15 40,5 40,15 20,25 20,30" fill="#000000" opacity="0.3"/>
+    <polygon points="60,20 80,10 80,15 100,5 100,15 80,25 80,30" fill="#000000" opacity="0.25"/>
+    <polygon points="120,20 140,10 140,15 160,5 160,15 140,25 140,30" fill="#000000" opacity="0.2"/>
+  </g>
+  
+  <!-- Project timeline -->
+  <g transform="translate(400, 80)">
+    <!-- Timeline line -->
+    <line x1="0" y1="50" x2="0" y2="150" stroke="#000000" stroke-width="3" opacity="0.3"/>
+    
+    <!-- Timeline points -->
+    <circle cx="0" cy="50" r="6" fill="#000000" opacity="0.4"/>
+    <circle cx="0" cy="80" r="6" fill="#000000" opacity="0.4"/>
+    <circle cx="0" cy="110" r="6" fill="#000000" opacity="0.4"/>
+    <circle cx="0" cy="140" r="6" fill="#000000" opacity="0.3"/>
+    
+    <!-- Timeline labels -->
+    <text x="15" y="55" fill="#000000" font-family="system-ui" font-size="12" opacity="0.7">Plan</text>
+    <text x="15" y="85" fill="#000000" font-family="system-ui" font-size="12" opacity="0.7">Code</text>
+    <text x="15" y="115" fill="#000000" font-family="system-ui" font-size="12" opacity="0.7">Test</text>
+    <text x="15" y="145" fill="#000000" font-family="system-ui" font-size="12" opacity="0.7">Deploy</text>
+  </g>
+  
+  <!-- Speed indicators -->
+  <g transform="translate(100, 200)">
+    <!-- Speedometer -->
+    <path d="M 50 80 A 40 40 0 0 1 130 80" stroke="#000000" stroke-width="4" fill="none" opacity="0.3"/>
+    <path d="M 50 80 A 40 40 0 0 1 110 50" stroke="#000000" stroke-width="4" fill="none" opacity="0.5"/>
+    
+    <!-- Needle -->
+    <line x1="90" y1="80" x2="115" y2="55" stroke="#000000" stroke-width="3" opacity="0.6"/>
+    <circle cx="90" cy="80" r="4" fill="#000000" opacity="0.6"/>
+    
+    <!-- Speed text -->
+    <text x="90" y="100" fill="#000000" font-family="system-ui" font-size="14" font-weight="600" text-anchor="middle" opacity="0.8">FAST</text>
+  </g>
+  
+  <!-- Workflow boxes -->
+  <g transform="translate(250, 200)">
+    <!-- Box 1 -->
+    <rect x="0" y="0" width="60" height="40" fill="none" stroke="#000000" stroke-width="2" opacity="0.3" rx="4"/>
+    <text x="30" y="25" fill="#000000" font-family="system-ui" font-size="10" text-anchor="middle" opacity="0.7">BUILD</text>
+    
+    <!-- Arrow -->
+    <path d="M65 20 L85 20 M80 15 L85 20 L80 25" stroke="#000000" stroke-width="2" fill="none" opacity="0.4"/>
+    
+    <!-- Box 2 -->
+    <rect x="90" y="0" width="60" height="40" fill="none" stroke="#000000" stroke-width="2" opacity="0.3" rx="4"/>
+    <text x="120" y="25" fill="#000000" font-family="system-ui" font-size="10" text-anchor="middle" opacity="0.7">TEST</text>
+    
+    <!-- Arrow -->
+    <path d="M155 20 L175 20 M170 15 L175 20 L170 25" stroke="#000000" stroke-width="2" fill="none" opacity="0.4"/>
+    
+    <!-- Box 3 -->
+    <rect x="180" y="0" width="60" height="40" fill="none" stroke="#000000" stroke-width="2" opacity="0.3" rx="4"/>
+    <text x="210" y="25" fill="#000000" font-family="system-ui" font-size="10" text-anchor="middle" opacity="0.7">DEPLOY</text>
+  </g>
+  
+  <!-- Text content -->
+  <g transform="translate(50, 300)">
+    <text x="0" y="20" fill="#000000" font-family="system-ui" font-size="18" font-weight="600" opacity="0.9">Accelerate Your API Development</text>
+    <text x="0" y="45" fill="#000000" font-family="system-ui" font-size="16" font-weight="600" opacity="0.8">Launch Projects Faster Than Ever!</text>
+    <text x="0" y="70" fill="#000000" font-family="system-ui" font-size="14" opacity="0.7">Streamline your workflow with tools designed for</text>
+    <text x="0" y="90" fill="#000000" font-family="system-ui" font-size="14" opacity="0.7">speedy delivery and precision in mind.</text>
+  </g>
+</svg>

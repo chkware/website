@@ -1,0 +1,60 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#0d1117" rx="12"/>
+  
+  <!-- GitHub Actions header -->
+  <rect width="600" height="50" fill="#161b22" rx="12"/>
+  <rect y="50" width="600" height="350" fill="#0d1117"/>
+  
+  <!-- GitHub logo and title -->
+  <circle cx="30" cy="25" r="12" fill="#f0f6fc"/>
+  <text x="50" y="30" fill="#f0f6fc" font-family="system-ui" font-size="16" font-weight="600">GitHub Actions</text>
+  
+  <!-- Workflow status -->
+  <rect x="450" y="15" width="120" height="20" fill="#238636" rx="10"/>
+  <text x="510" y="27" fill="#ffffff" font-family="system-ui" font-size="12" text-anchor="middle">✓ All checks passed</text>
+  
+  <!-- Pipeline steps -->
+  <g transform="translate(40, 80)">
+    <!-- Step 1: Build -->
+    <circle cx="20" cy="20" r="12" fill="#238636"/>
+    <text x="20" y="25" fill="#ffffff" font-family="system-ui" font-size="12" text-anchor="middle">✓</text>
+    <text x="45" y="25" fill="#f0f6fc" font-family="system-ui" font-size="14">Build Application</text>
+    <text x="45" y="40" fill="#8b949e" font-family="system-ui" font-size="12">Completed in 2m 34s</text>
+    
+    <!-- Connector line -->
+    <line x1="20" y1="35" x2="20" y2="65" stroke="#30363d" stroke-width="2"/>
+    
+    <!-- Step 2: API Tests -->
+    <circle cx="20" cy="80" r="12" fill="#238636"/>
+    <text x="20" y="85" fill="#ffffff" font-family="system-ui" font-size="12" text-anchor="middle">✓</text>
+    <text x="45" y="85" fill="#f0f6fc" font-family="system-ui" font-size="14">Run API Tests (CHKware)</text>
+    <text x="45" y="100" fill="#8b949e" font-family="system-ui" font-size="12">16 tests passed • 0 failed • 1m 12s</text>
+    
+    <!-- Test details box -->
+    <rect x="45" y="110" width="480" height="80" fill="#161b22" rx="6" stroke="#30363d"/>
+    <text x="55" y="130" fill="#58a6ff" font-family="monospace" font-size="12">$ chkware run tests/api/</text>
+    <text x="55" y="145" fill="#7c3aed" font-family="monospace" font-size="12">✓ user-authentication.chk</text>
+    <text x="55" y="160" fill="#7c3aed" font-family="monospace" font-size="12">✓ product-catalog.chk</text>
+    <text x="55" y="175" fill="#7c3aed" font-family="monospace" font-size="12">✓ payment-processing.chk</text>
+    
+    <text x="300" y="145" fill="#56d364" font-family="monospace" font-size="12">PASSED (142ms)</text>
+    <text x="300" y="160" fill="#56d364" font-family="monospace" font-size="12">PASSED (89ms)</text>
+    <text x="300" y="175" fill="#56d364" font-family="monospace" font-size="12">PASSED (201ms)</text>
+    
+    <!-- Connector line -->
+    <line x1="20" y1="95" x2="20" y2="210" stroke="#30363d" stroke-width="2"/>
+    
+    <!-- Step 3: Deploy -->
+    <circle cx="20" cy="225" r="12" fill="#238636"/>
+    <text x="20" y="230" fill="#ffffff" font-family="system-ui" font-size="12" text-anchor="middle">✓</text>
+    <text x="45" y="230" fill="#f0f6fc" font-family="system-ui" font-size="14">Deploy to Production</text>
+    <text x="45" y="245" fill="#8b949e" font-family="system-ui" font-size="12">Deployed successfully • 45s</text>
+  </g>
+  
+  <!-- Summary stats -->
+  <rect x="450" y="320" width="120" height="60" fill="#0f1419" rx="8" stroke="#30363d"/>
+  <text x="510" y="340" fill="#f0f6fc" font-family="system-ui" font-size="14" text-anchor="middle" font-weight="600">Total Time</text>
+  <text x="510" y="355" fill="#56d364" font-family="system-ui" font-size="20" text-anchor="middle" font-weight="700">4m 31s</text>
+  <text x="510" y="370" fill="#8b949e" font-family="system-ui" font-size="12" text-anchor="middle">16 tests passed</text>
+</svg>

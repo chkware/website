@@ -3,210 +3,134 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { BlogPostCard } from "@/components/ui/blog-post-card";
-import { FeaturedBlogSection } from "@/components/blog/featured-blog-section";
-import { ChevronLeft, ChevronRight, Tag, Users, Calendar } from "lucide-react";
-import { getAllBlogPosts, BlogPost } from "@/lib/blog-utils";
-import Link from "next/link";
+import { getAllBlogPosts, BlogPost, getAllTags } from "@/lib/blog-utils";
+import { FeaturedPost } from "@/components/blog/FeaturedPost";
+import { BlogCard } from "@/components/blog/BlogCard";
+import { BlogFilters } from "@/components/blog/BlogFilters";
+import { BlogListingSkeleton } from "@/components/blog/BlogSkeleton";
+
 
 export default function BlogPage() {
-  const [currentPage, setCurrentPage] = useState(1);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [categories, setCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const postsPerPage = 6;
 
-  // Load blog posts
+  // Load blog posts and categories
   useEffect(() => {
-    // Get all blog posts
     const posts = getAllBlogPosts();
+    const tags = getAllTags();
+    
     setBlogPosts(posts);
+    setFilteredPosts(posts);
+    setCategories(tags.map(tag => tag.name));
     setIsLoading(false);
   }, []);
 
-  // Get featured post (most recent) and remaining posts
-  const featuredPost = blogPosts.length > 0 ? blogPosts[0] : null;
-  const remainingPosts = blogPosts.length > 0 ? blogPosts.slice(1) : [];
+  // Handle category filtering
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    
+    if (category === "All") {
+      setFilteredPosts(blogPosts);
+    } else {
+      const filtered = blogPosts.filter(post => 
+        post.tags.includes(category)
+      );
+      setFilteredPosts(filtered);
+    }
+  };
 
-  // Calculate total pages
-  const totalPages = Math.ceil(remainingPosts.length / postsPerPage);
-
-  // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = remainingPosts.slice(indexOfFirstPost, indexOfLastPost);
-
-  // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  // Get featured post (most recent) and other posts
+  const featuredPost = filteredPosts[0];
+  const otherPosts = filteredPosts.slice(1);
 
   // Loading state
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-500"></div>
-      </div>
-    );
-  }
-
-  // No posts state
-  if (blogPosts.length === 0) {
-    return (
-      <Container size="large" className="py-32">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">No Blog Posts Found</h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-8">
-            There are no blog posts available at the moment. Please check back later.
-          </p>
-        </div>
-      </Container>
-    );
+    return <BlogListingSkeleton />;
   }
 
   return (
-    <>
-      {/* Header Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-white dark:bg-black relative overflow-hidden border-b border-gray-100 dark:border-gray-800">
+    <div className="min-h-screen bg-white">
+      {/* Simple Header */}
+      <section className="pt-24 md:pt-32 pb-8 md:pb-12">
         <Container size="large">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Our Blog
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Latest news, updates, and insights about CHKware and API testing
-            </p>
-
-            {/* Blog Navigation */}
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Link
-                href="/blog/tags"
-                className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              >
-                <Tag className="h-4 w-4 mr-2" />
-                <span>Browse by Tags</span>
-              </Link>
-              <Link
-                href="/blog/authors"
-                className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              >
-                <Users className="h-4 w-4 mr-2" />
-                <span>Meet Our Authors</span>
-              </Link>
-              <Link
-                href="/blog/archive"
-                className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              >
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>Archive</span>
-              </Link>
-            </div>
-          </motion.div>
+          <div className="max-w-6xl mx-auto px-4 md:px-0">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Blog</h1>
+              <p className="text-gray-600 text-base md:text-lg">Read about our latest announcements.</p>
+            </motion.div>
+          </div>
         </Container>
-
-        {/* Background decorations - subtle */}
-        <div className="absolute -z-10 -top-24 right-0 left-0 w-full h-full overflow-hidden opacity-20 dark:opacity-10 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-200 dark:bg-gray-800 rounded-full mix-blend-multiply filter blur-3xl"></div>
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gray-300 dark:bg-gray-700 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
       </section>
 
-      {/* Featured Post Section */}
+      {/* Divider Line */}
+      <div className="border-t border-gray-200"></div>
+
+      {/* Featured Article */}
       {featuredPost && (
-        <FeaturedBlogSection
-          featuredPost={{
-            title: featuredPost.title,
-            excerpt: featuredPost.description,
-            authorName: featuredPost.authors[0]?.name || "Unknown",
-            authorImageSrc: featuredPost.authors[0]?.image_url || "/images/placeholder.svg",
-            publicationDate: featuredPost.date,
-            readTimeMinutes: featuredPost.readingTime,
-            slug: featuredPost.slug,
-            imageUrl: featuredPost.image || "",
-            heroImageAlt: featuredPost.title
-          }}
-          className="border-b border-gray-100 dark:border-gray-800"
-        />
+        <section className="py-8 md:py-12">
+          <Container size="large">
+            <div className="max-w-6xl mx-auto px-4 md:px-0">
+              <FeaturedPost post={featuredPost} />
+            </div>
+          </Container>
+        </section>
       )}
 
-      {/* Latest Articles */}
-      <section className="py-12 bg-white dark:bg-black">
+      {/* Filter Tabs */}
+      <section className="py-6 md:py-8 border-t border-gray-200">
         <Container size="large">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Latest Articles
-            </h2>
+          <div className="max-w-6xl mx-auto px-4 md:px-0">
+            <BlogFilters
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={handleCategoryChange}
+            />
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentPosts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <BlogPostCard
-                  title={post.title}
-                  excerpt={post.description}
-                  authorName={post.authors[0]?.name || "Unknown"}
-                  authorImageSrc={post.authors[0]?.image_url || "/images/placeholder.svg"}
-                  publicationDate={post.date}
-                  readTimeMinutes={post.readingTime}
-                  slug={post.slug}
-                  thumbnailUrl={post.image || ""}
-                  tags={post.tags}
-                />
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex justify-center mt-12 border-t border-gray-100 dark:border-gray-800 pt-12">
-              <nav className="flex items-center space-x-2">
-                <button
-                  onClick={() => paginate(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                  className="p-2 rounded-md border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  aria-label="Previous page"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-
-                <div className="flex items-center space-x-1">
-                  {[...Array(totalPages)].map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => paginate(i + 1)}
-                      className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                        currentPage === i + 1
-                          ? "bg-gray-900 dark:bg-gray-700 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                      }`}
-                      aria-label={`Page ${i + 1}`}
-                      aria-current={currentPage === i + 1 ? "page" : undefined}
-                    >
-                      {i + 1}
-                    </button>
-                  ))}
-                </div>
-
-                <button
-                  onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
-                  disabled={currentPage === totalPages}
-                  className="p-2 rounded-md border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  aria-label="Next page"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              </nav>
-            </div>
-          )}
         </Container>
       </section>
-    </>
+
+      {/* Articles Grid */}
+      <section className="pb-12 md:pb-16">
+        <Container size="large">
+          <div className="max-w-6xl mx-auto px-4 md:px-0">
+            {otherPosts.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {otherPosts.map((post, index) => (
+                  <BlogCard key={post.id} post={post} index={index} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 md:py-12">
+                <div className="text-4xl md:text-6xl mb-4">📝</div>
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  {activeCategory === "All" 
+                    ? "There are no blog posts available at the moment."
+                    : `No articles found in the "${activeCategory}" category.`
+                  }
+                </p>
+              </div>
+            )}
+
+            {/* Show More Button */}
+            <div className="text-center mt-8 md:mt-12">
+              <button className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors text-sm md:text-base">
+                SHOW MORE
+                <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
   );
 }

@@ -235,11 +235,11 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
                   "group flex items-center scroll-mt-20"
                 )}
               >
-                <span>{domToReact(domNode.children, options)}</span>
+                <span>{domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}</span>
                 <a
                   href={`#${id}`}
                   className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                  aria-label={`Link to ${domToReact(domNode.children, options)}`}
+                  aria-label={`Link to ${domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}`}
                 >
                   <span className="text-gray-700 dark:text-gray-300">#</span>
                 </a>
@@ -248,11 +248,11 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
           }
 
           // Handle code blocks
-          if (domNode.name === 'pre' && domNode.children[0]?.name === 'code') {
+          if (domNode.name === 'pre' && domNode.children[0] instanceof Element && domNode.children[0].name === 'code') {
             const codeElement = domNode.children[0] as Element;
             const className = codeElement.attribs.class || '';
             const language = className.replace('language-', '') || 'text';
-            const code = codeElement.children[0]?.data || '';
+            const code = (codeElement.children[0] as any)?.data || '';
 
             return (
               <CodeBlock language={language}>
@@ -296,7 +296,7 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
                   href={href}
                   className="text-gray-900 dark:text-white font-medium border-b border-gray-300 dark:border-gray-600 hover:border-gray-900 dark:hover:border-gray-300 transition-colors"
                 >
-                  {domToReact(domNode.children, options)}
+                  {domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}
                 </Link>
               );
             }
@@ -317,7 +317,7 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
           if (domNode.name === 'p') {
             return (
               <p className="my-6 text-gray-800 dark:text-gray-200 leading-relaxed text-lg">
-                {domToReact(domNode.children, options)}
+                {domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}
               </p>
             );
           }
@@ -326,7 +326,7 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
           if (domNode.name === 'ul') {
             return (
               <ul className="my-6 space-y-1 list-disc pl-6">
-                {domToReact(domNode.children, options)}
+                {domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}
               </ul>
             );
           }
@@ -334,7 +334,7 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
           if (domNode.name === 'ol') {
             return (
               <ol className="my-6 space-y-1 list-decimal pl-6">
-                {domToReact(domNode.children, options)}
+                {domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}
               </ol>
             );
           }
@@ -342,7 +342,7 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
           if (domNode.name === 'li') {
             return (
               <li className="py-1">
-                {domToReact(domNode.children, options)}
+                {domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}
               </li>
             );
           }
@@ -351,7 +351,7 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
           if (domNode.name === 'blockquote') {
             return (
               <blockquote className="my-6 pl-4 border-l-4 border-gray-400 dark:border-gray-600 italic text-gray-800 dark:text-gray-200">
-                {domToReact(domNode.children, options)}
+                {domToReact(domNode.children.filter((child): child is Element => child instanceof Element), options)}
               </blockquote>
             );
           }

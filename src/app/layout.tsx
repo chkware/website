@@ -5,6 +5,10 @@ import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/lib/theme-context";
 import { BackgroundElements } from "@/components/ui/BackgroundElements";
 import { MDXComponents } from "@/components/mdx-components";
+import { generateMetadata } from "@/lib/seo/metadata";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { SearchConsoleMeta } from "@/components/analytics/SearchConsole";
+import { PerformanceOptimizer } from "@/components/performance/PerformanceOptimizer";
 import "@/styles/globals.css";
 
 // Load the Supreme variable font
@@ -20,10 +24,7 @@ const supreme = localFont({
   variable: '--font-supreme',
 });
 
-export const metadata: Metadata = {
-  title: "CHKwire | API Testing and Automation Toolbox",
-  description: "Low-code API Testing and Automation Toolbox for developers and testers.",
-};
+export const metadata: Metadata = generateMetadata();
 
 export default function RootLayout({
   children,
@@ -33,6 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
+        <SearchConsoleMeta />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -54,6 +62,8 @@ export default function RootLayout({
         />
       </head>
       <body className={`${supreme.variable} font-sans antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
+        <GoogleAnalytics />
+        <PerformanceOptimizer />
         <BackgroundElements />
         <ThemeProvider>
           <MDXComponents>

@@ -3,22 +3,28 @@
 import React from "react";
 import { FeatureCard } from "@/components/features/FeatureCard";
 import { Container } from "@/components/ui/Container";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { motion } from "framer-motion";
 
 export function FeaturesSection() {
 
   return (
     <section className="py-32 relative overflow-hidden">
+      {/* Subtle animated background with slate texture */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black -z-10"></div>
+      <div className="absolute inset-0 -z-10">
+        <AnimatedBackground variant="subtle" showSlateTexture={true} />
+      </div>
       <Container size="large">
-        <div className="text-center mb-20">
+        <div className="text-center mb-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
-              Powerful & Low-Code API Testing
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black dark:text-white mb-4">
+              Powerful & <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Low-Code</span> API Testing
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
               CHKware simplifies API testing and automation with easy-to-write configurations, cross-platform support, and reusable test cases.
@@ -26,7 +32,7 @@ export function FeaturesSection() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
           <FeatureCard
             title="Scriptable HTTP Client"
             description="Send requests, handle authentication, and manage complex API workflows with minimal code. Supports OAuth, JWT, and custom auth schemes."

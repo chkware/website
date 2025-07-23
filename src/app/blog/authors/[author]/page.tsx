@@ -22,8 +22,9 @@ export async function generateStaticParams() {
 }
 
 // Define metadata for the page
-export async function generateMetadata({ params }: { params: { author: string } }) {
-  const authorId = params.author;
+export async function generateMetadata({ params }: { params: Promise<{ author: string }> }) {
+  const { author: authorParam } = await params;
+  const authorId = authorParam;
   const authors = getAuthors();
   const author = authors[authorId];
 
@@ -40,8 +41,9 @@ export async function generateMetadata({ params }: { params: { author: string } 
   };
 }
 
-export default async function AuthorPage({ params }: { params: { author: string } }) {
-  const authorId = params.author;
+export default async function AuthorPage({ params }: { params: Promise<{ author: string }> }) {
+  const { author: authorParam } = await params;
+  const authorId = authorParam;
   const authors = getAuthors();
   const author = authors[authorId];
   const posts = getPostsByAuthor(authorId);

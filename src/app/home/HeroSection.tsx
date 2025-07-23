@@ -5,18 +5,16 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/Container";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { ArrowRight, Code } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-black pt-36 pb-24 md:pt-56 md:pb-40">
+    <section className="relative overflow-hidden bg-white dark:bg-black pt-44 pb-32 md:pt-64 md:pb-48">
       <Container size="large" className="relative">
-        {/* Background decorations */}
-        <div className="absolute -z-10 -top-24 right-0 left-0 w-full h-full overflow-hidden opacity-30 dark:opacity-20 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl"></div>
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        {/* Animated liquid background with slate texture */}
+        <AnimatedBackground variant="hero" showSlateTexture={true} />
+        <div className="relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20" style={{ zIndex: 10 }}>
           {/* Left side hero content */}
           <motion.div
             className="flex-1 text-center lg:text-left"

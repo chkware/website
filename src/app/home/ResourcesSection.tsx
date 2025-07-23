@@ -43,8 +43,8 @@ export function ResourcesSection() {
     <section className="py-24 bg-white dark:bg-black">
       <Container size="large">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">
-            Resources & Documentation
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black dark:text-white mb-4">
+            Resources & <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Documentation</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
             Everything you need to master CHKware and build better API tests

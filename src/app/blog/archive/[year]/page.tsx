@@ -15,8 +15,8 @@ export async function generateStaticParams() {
 }
 
 // Define metadata for the page
-export async function generateMetadata({ params }: { params: { year: string } }) {
-  const year = params.year;
+export async function generateMetadata({ params }: { params: Promise<{ year: string }> }) {
+  const { year } = await params;
   const posts = getPostsByYear(parseInt(year));
 
   if (posts.length === 0) {
@@ -33,11 +33,14 @@ export async function generateMetadata({ params }: { params: { year: string } })
 }
 
 export default async function ArchivePage({ params, searchParams }: {
-  params: { year: string },
-  searchParams: { month?: string }
+  params: Promise<{ year: string }>,
+  searchParams: Promise<{ month?: string }>
 }) {
-  const year = parseInt(params.year);
-  const month = searchParams.month ? parseInt(searchParams.month) : undefined;
+  const { year: yearParam } = await params;
+  const { month: monthParam } = await searchParams;
+  
+  const year = parseInt(yearParam);
+  const month = monthParam ? parseInt(monthParam) : undefined;
 
   // Get posts for the specified year and optional month
   const posts = month

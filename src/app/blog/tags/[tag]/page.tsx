@@ -15,8 +15,9 @@ export async function generateStaticParams() {
 }
 
 // Define metadata for the page
-export async function generateMetadata({ params }: { params: { tag: string } }) {
-  const tag = decodeURIComponent(params.tag);
+export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }) {
+  const { tag: tagParam } = await params;
+  const tag = decodeURIComponent(tagParam);
   const posts = getPostsByTag(tag);
 
   if (posts.length === 0) {
@@ -32,8 +33,9 @@ export async function generateMetadata({ params }: { params: { tag: string } }) 
   };
 }
 
-export default async function TagPage({ params }: { params: { tag: string } }) {
-  const tag = decodeURIComponent(params.tag);
+export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+  const { tag: tagParam } = await params;
+  const tag = decodeURIComponent(tagParam);
   const posts = getPostsByTag(tag);
 
   if (posts.length === 0) {

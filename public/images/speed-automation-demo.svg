@@ -1,0 +1,88 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#ffffff" rx="12"/>
+  
+  <!-- Rocket illustration -->
+  <g transform="translate(80, 60)">
+    <!-- Rocket body -->
+    <ellipse cx="60" cy="120" rx="25" ry="80" fill="#000000" opacity="0.1"/>
+    <rect x="45" y="60" width="30" height="120" fill="#000000" opacity="0.2" rx="15"/>
+    
+    <!-- Rocket tip -->
+    <polygon points="60,40 45,60 75,60" fill="#000000" opacity="0.3"/>
+    
+    <!-- Rocket fins -->
+    <polygon points="35,140 45,120 45,160" fill="#000000" opacity="0.2"/>
+    <polygon points="85,140 75,120 75,160" fill="#000000" opacity="0.2"/>
+    
+    <!-- Rocket flames -->
+    <ellipse cx="60" cy="190" rx="15" ry="25" fill="#000000" opacity="0.1"/>
+    <ellipse cx="55" cy="200" rx="8" ry="15" fill="#000000" opacity="0.15"/>
+    <ellipse cx="65" cy="200" rx="8" ry="15" fill="#000000" opacity="0.15"/>
+  </g>
+  
+  <!-- Speed indicators -->
+  <g transform="translate(200, 80)">
+    <!-- Speed lines -->
+    <line x1="0" y1="40" x2="80" y2="40" stroke="#000000" stroke-width="3" opacity="0.3"/>
+    <line x1="10" y1="60" x2="90" y2="60" stroke="#000000" stroke-width="3" opacity="0.2"/>
+    <line x1="5" y1="80" x2="85" y2="80" stroke="#000000" stroke-width="3" opacity="0.25"/>
+    <line x1="15" y1="100" x2="95" y2="100" stroke="#000000" stroke-width="3" opacity="0.2"/>
+    
+    <!-- 4x indicator -->
+    <circle cx="120" cy="70" r="35" fill="none" stroke="#000000" stroke-width="3" opacity="0.3"/>
+    <text x="120" y="75" fill="#000000" font-family="system-ui" font-size="24" font-weight="700" text-anchor="middle" opacity="0.8">4x</text>
+    <text x="120" y="95" fill="#000000" font-family="system-ui" font-size="12" text-anchor="middle" opacity="0.6">FASTER</text>
+  </g>
+  
+  <!-- Performance charts -->
+  <g transform="translate(350, 60)">
+    <!-- Chart bars -->
+    <rect x="0" y="80" width="20" height="60" fill="#000000" opacity="0.2"/>
+    <rect x="30" y="60" width="20" height="80" fill="#000000" opacity="0.3"/>
+    <rect x="60" y="40" width="20" height="100" fill="#000000" opacity="0.4"/>
+    <rect x="90" y="20" width="20" height="120" fill="#000000" opacity="0.5"/>
+    
+    <!-- Chart base line -->
+    <line x1="0" y1="150" x2="120" y2="150" stroke="#000000" stroke-width="2" opacity="0.3"/>
+    
+    <!-- Trend arrow -->
+    <path d="M130 140 L160 110 L155 115 L160 110 L155 105" stroke="#000000" stroke-width="3" fill="none" opacity="0.4"/>
+  </g>
+  
+  <!-- Automation gears -->
+  <g transform="translate(100, 250)">
+    <!-- Large gear -->
+    <circle cx="50" cy="50" r="30" fill="none" stroke="#000000" stroke-width="3" opacity="0.3"/>
+    <circle cx="50" cy="50" r="20" fill="none" stroke="#000000" stroke-width="2" opacity="0.2"/>
+    <!-- Gear teeth -->
+    <rect x="45" y="15" width="10" height="10" fill="#000000" opacity="0.3"/>
+    <rect x="75" y="45" width="10" height="10" fill="#000000" opacity="0.3"/>
+    <rect x="45" y="75" width="10" height="10" fill="#000000" opacity="0.3"/>
+    <rect x="15" y="45" width="10" height="10" fill="#000000" opacity="0.3"/>
+    
+    <!-- Small gear -->
+    <circle cx="120" cy="30" r="20" fill="none" stroke="#000000" stroke-width="2" opacity="0.25"/>
+    <circle cx="120" cy="30" r="12" fill="none" stroke="#000000" stroke-width="2" opacity="0.2"/>
+    <!-- Small gear teeth -->
+    <rect x="115" y="5" width="10" height="8" fill="#000000" opacity="0.25"/>
+    <rect x="135" y="25" width="10" height="8" fill="#000000" opacity="0.25"/>
+    <rect x="115" y="45" width="10" height="8" fill="#000000" opacity="0.25"/>
+    <rect x="95" y="25" width="10" height="8" fill="#000000" opacity="0.25"/>
+  </g>
+  
+  <!-- Text content -->
+  <g transform="translate(300, 250)">
+    <text x="0" y="20" fill="#000000" font-family="system-ui" font-size="18" font-weight="600" opacity="0.9">Revolutionize Your API Testing</text>
+    <text x="0" y="45" fill="#000000" font-family="system-ui" font-size="16" font-weight="600" opacity="0.8">Achieve Up to 4x Faster Automation!</text>
+    <text x="0" y="70" fill="#000000" font-family="system-ui" font-size="14" opacity="0.7">Boost efficiency and deliver results with</text>
+    <text x="0" y="90" fill="#000000" font-family="system-ui" font-size="14" opacity="0.7">unmatched speed and reliability.</text>
+  </g>
+  
+  <!-- Performance metrics -->
+  <g transform="translate(50, 350)">
+    <rect x="0" y="0" width="500" height="2" fill="#000000" opacity="0.2"/>
+    <rect x="0" y="0" width="400" height="2" fill="#000000" opacity="0.4"/>
+    <text x="250" y="25" fill="#000000" font-family="system-ui" font-size="12" text-anchor="middle" opacity="0.6">80% Performance Improvement</text>
+  </g>
+</svg>

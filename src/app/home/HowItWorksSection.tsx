@@ -41,13 +41,13 @@ export function HowItWorksSection() {
       <Container size="large">
         <div className="text-center mb-16">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-black dark:text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            How CHKware Works
+            How <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">CHKware</span> Works
           </motion.h2>
           <motion.p
             className="text-xl text-gray-600 dark:text-gray-300 mx-auto max-w-3xl"
@@ -71,11 +71,6 @@ export function HowItWorksSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="h-full p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 relative overflow-hidden">
-                {/* Step number indicator */}
-                <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-xs font-bold text-blue-600 dark:text-blue-400">
-                  {index + 1}
-                </div>
-
                 <div className="flex flex-col items-center text-center">
                   <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
                     {step.icon}
@@ -165,21 +160,26 @@ expose:
                     repeatDelay: 4,
                   }}
                 >
-                  <pre className="text-green-400 text-sm font-mono">
-                    {`$ chk workflow Workflow-User-Post-Create.chk
+                  <pre className="text-sm font-mono leading-relaxed">
+                    <span className="text-blue-400">$ chk run workflow.chk</span>{'\n\n'}
 
+                    <span className="text-yellow-400">🚀 CHKware API Testing Suite</span>{'\n'}
+                    <span className="text-gray-400">Running workflow: API Testing Pipeline</span>{'\n\n'}
 
-Workflow:
-Steps total: 3, failed: 0
-------
-+ [PASS] Task: Login with user's credential
->> POST https://dummyjson.com/user/login
-------
-+ [PASS] Task: Get user's me
->> GET https://dummyjson.com/user/me
-------
-+ [PASS] Task: Create a post
->> POST https://dummyjson.com/posts/add`}
+                    <span className="text-green-400">✓ [PASS]</span> <span className="text-white">Login with credentials</span>{'\n'}
+                    <span className="text-gray-400">  → POST /api/auth/login</span> <span className="text-green-400">(200ms)</span>{'\n'}
+                    <span className="text-gray-400">  → Token validated successfully</span>{'\n\n'}
+
+                    <span className="text-green-400">✓ [PASS]</span> <span className="text-white">Get user profile</span>{'\n'}
+                    <span className="text-gray-400">  → GET /api/user/profile</span> <span className="text-green-400">(150ms)</span>{'\n'}
+                    <span className="text-gray-400">  → Response schema validated</span>{'\n\n'}
+
+                    <span className="text-green-400">✓ [PASS]</span> <span className="text-white">Create new post</span>{'\n'}
+                    <span className="text-gray-400">  → POST /api/posts</span> <span className="text-green-400">(300ms)</span>{'\n'}
+                    <span className="text-gray-400">  → Post created with ID: 12345</span>{'\n\n'}
+
+                    <span className="text-green-400">🎉 All tests passed!</span> <span className="text-white">3/3 steps completed</span>{'\n'}
+                    <span className="text-gray-400">Total time: 650ms</span>
                   </pre>
                 </motion.div>
               </div>
