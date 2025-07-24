@@ -37,7 +37,7 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-24 bg-white dark:bg-black">
+    <section className="section-spacing bg-white dark:bg-black">
       <Container size="large">
         <div className="text-center mb-16">
           <motion.h2

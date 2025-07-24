@@ -243,7 +243,7 @@ export function ContactSection() {
           message: result.message
         });
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({
         type: 'error',
         message: 'Network error. Please check your connection and try again.'
@@ -269,7 +269,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="section-spacing relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10" />
       <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-r from-blue-50 via-purple-50 to-blue-50 dark:from-blue-950/20 dark:via-purple-950/20 dark:to-blue-950/20 opacity-60 -z-10 blur-3xl" />

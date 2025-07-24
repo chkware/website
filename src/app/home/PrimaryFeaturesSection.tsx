@@ -29,7 +29,7 @@ export function PrimaryFeaturesSection() {
   ];
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-gray-50/50 dark:bg-gray-900/50">
+    <section className="section-spacing relative overflow-hidden bg-gray-50/50 dark:bg-gray-900/50">
       {/* Animated background with subtle texture */}
       <AnimatedBackground variant="subtle" showSlateTexture={true} />
 

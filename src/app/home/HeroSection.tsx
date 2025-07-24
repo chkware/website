@@ -10,11 +10,11 @@ import { ArrowRight, Code } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-black pt-44 pb-32 md:pt-64 md:pb-48">
-      <Container size="large" className="relative">
-        {/* Animated liquid background with slate texture */}
-        <AnimatedBackground variant="hero" showSlateTexture={true} />
-        <div className="relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20" style={{ zIndex: 10 }}>
+    <section className="relative overflow-hidden min-h-[90vh] flex items-center z-0">
+      {/* Animated liquid background with slate texture */}
+      <AnimatedBackground variant="hero" showSlateTexture={true} />
+      <Container size="large" className="relative z-10 section-spacing">
+        <div className="relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Left side hero content */}
           <motion.div
             className="flex-1 text-center lg:text-left"
@@ -29,7 +29,7 @@ export function HeroSection() {
             </span>
 
             {/* Headline */}
-            <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight text-black dark:text-white mb-6">
+            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-black dark:text-white mb-6">
               Reduce API{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 regression cost
@@ -59,9 +59,9 @@ export function HeroSection() {
                 variant="outline"
                 className="px-6 py-2 h-12 text-base gap-2 dark:text-white"
               >
-                <Link href="#demo" className="flex items-center">
+                <Link href="#features" className="flex items-center">
                   <Code className="h-5 w-5" />
-                  View Demo
+                  View Features
                 </Link>
               </Button>
             </div>

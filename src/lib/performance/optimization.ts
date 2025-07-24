@@ -5,14 +5,7 @@
 // Preload critical resources
 export function preloadCriticalResources() {
   if (typeof window !== 'undefined') {
-    // Preload critical fonts
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'preload';
-    fontLink.href = '/fonts/Supreme-Variable.woff2';
-    fontLink.as = 'font';
-    fontLink.type = 'font/woff2';
-    fontLink.crossOrigin = 'anonymous';
-    document.head.appendChild(fontLink);
+    // Note: Figtree is loaded via Google Fonts in layout.tsx, no need to preload local fonts
 
     // Preload hero images
     const heroImageLink = document.createElement('link');

@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 export function FeaturesSection() {
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="section-spacing relative overflow-hidden">
       {/* Subtle animated background with slate texture */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black -z-10"></div>
       <div className="absolute inset-0 -z-10">

@@ -40,7 +40,7 @@ const resources = [
 
 export function ResourcesSection() {
   return (
-    <section className="py-24 bg-white dark:bg-black">
+    <section className="section-spacing bg-white dark:bg-black">
       <Container size="large">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black dark:text-white mb-4">

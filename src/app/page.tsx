@@ -14,12 +14,20 @@ export default function Home() {
     <>
       <HomePageStructuredData />
       <HeroSection />
-      <PrimaryFeaturesSection />
-      <FeaturesSection />
-      <HowItWorksSection />
-      <TestimonialsSection />
+      <div id="features">
+        <PrimaryFeaturesSection />
+        <FeaturesSection />
+      </div>
+      <div id="how-it-works">
+        <HowItWorksSection />
+      </div>
+      <div id="testimonials">
+        <TestimonialsSection />
+      </div>
       <ResourcesSection />
-      <ContactSection />
+      <div id="contact">
+        <ContactSection />
+      </div>
     </>
   );
 }

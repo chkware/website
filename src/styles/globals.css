@@ -1,25 +1,8 @@
 @import "tailwindcss";
 
-/* Define font faces */
-@font-face {
-  font-family: 'Supreme';
-  src: url('/font/Supreme-Variable.woff2') format('woff2');
-  font-weight: 100 1000;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Supreme';
-  src: url('/font/Supreme-Variable.woff2') format('woff2');
-  font-weight: 100 1000;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* Tailwind CSS v4 theme configuration */
 @theme {
-  --font-sans: 'Supreme', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-figtree), system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
@@ -47,6 +30,11 @@
     --input: hsl(214.3 31.8% 91.4%);
     --ring: hsl(222.2 84% 4.9%);
     --radius: 0.6rem;
+    
+    /* Section spacing system */
+    --section-spacing-mobile: 4rem;    /* 64px */
+    --section-spacing-tablet: 6rem;    /* 96px */
+    --section-spacing-desktop: 10rem;  /* 160px */
   }
 
   .dark {
@@ -74,13 +62,16 @@
   .animation-delay-200 {
     animation-delay: 0.2s;
   }
+
   .animation-delay-400 {
     animation-delay: 0.4s;
   }
+
   /* Add more utility delays if needed */
   .animation-delay-600 {
     animation-delay: 0.6s;
   }
+
   .animation-delay-800 {
     animation-delay: 0.8s;
   }
@@ -91,49 +82,77 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500;
   }
 
+  /* Section spacing utilities */
+  .section-spacing {
+    padding-top: var(--section-spacing-mobile);
+    padding-bottom: var(--section-spacing-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: var(--section-spacing-tablet);
+      padding-bottom: var(--section-spacing-tablet);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing {
+      padding-top: var(--section-spacing-desktop);
+      padding-bottom: var(--section-spacing-desktop);
+    }
+  }
+
+  /* Section spacing modifiers */
+  .section-spacing-sm {
+    padding-top: calc(var(--section-spacing-mobile) * 0.75);
+    padding-bottom: calc(var(--section-spacing-mobile) * 0.75);
+  }
+
+  @media (min-width: 768px) {
+    .section-spacing-sm {
+      padding-top: calc(var(--section-spacing-tablet) * 0.75);
+      padding-bottom: calc(var(--section-spacing-tablet) * 0.75);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing-sm {
+      padding-top: calc(var(--section-spacing-desktop) * 0.75);
+      padding-bottom: calc(var(--section-spacing-desktop) * 0.75);
+    }
+  }
+
+  .section-spacing-lg {
+    padding-top: calc(var(--section-spacing-mobile) * 1.25);
+    padding-bottom: calc(var(--section-spacing-mobile) * 1.25);
+  }
+
+  @media (min-width: 768px) {
+    .section-spacing-lg {
+      padding-top: calc(var(--section-spacing-tablet) * 1.25);
+      padding-bottom: calc(var(--section-spacing-tablet) * 1.25);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing-lg {
+      padding-top: calc(var(--section-spacing-desktop) * 1.25);
+      padding-bottom: calc(var(--section-spacing-desktop) * 1.25);
+    }
+  }
+
   /* Add focus states for better accessibility */
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
   }
 
-  /* Floating design elements */
-  .floating-shapes {
-    @apply fixed inset-0 pointer-events-none overflow-hidden z-[-1];
-  }
-
-  .floating-shape {
-    @apply absolute rounded-full bg-blue-500/10 dark:bg-blue-500/5;
-    animation: float 20s ease-in-out infinite;
-  }
-
-  .floating-shape-1 {
-    @apply w-64 h-64 top-[10%] left-[5%] bg-blue-500/10 dark:bg-blue-500/5;
-    animation-duration: 25s;
-    animation-delay: 0s;
-  }
-
-  .floating-shape-2 {
-    @apply w-96 h-96 bottom-[15%] right-[10%] bg-purple-500/10 dark:bg-purple-500/5;
-    animation-duration: 30s;
-    animation-delay: 5s;
-  }
-
-  .floating-shape-3 {
-    @apply w-48 h-48 top-[40%] right-[25%] bg-cyan-500/10 dark:bg-cyan-500/5;
-    animation-duration: 20s;
-    animation-delay: 2s;
-  }
-
-  .floating-shape-4 {
-    @apply w-72 h-72 bottom-[30%] left-[20%] bg-pink-500/10 dark:bg-pink-500/5;
-    animation-duration: 22s;
-    animation-delay: 7s;
-  }
+  /* Focus states for better accessibility */
 
   /* Background texture and design elements */
   .bg-texture {
     position: relative;
   }
+
   .bg-texture::before {
     content: "";
     position: absolute;
@@ -145,72 +164,20 @@
     background-repeat: repeat;
     background-size: 200px 200px;
   }
+
   .dark .bg-texture::before {
     opacity: 0.05;
   }
 
-  .bg-dots {
-    @apply relative;
-    &::before {
-      content: "";
-      @apply absolute inset-0 pointer-events-none opacity-[0.04] dark:opacity-[0.06] mix-blend-overlay;
-      background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-  }
 
-  .bg-grid {
-    @apply relative;
-    &::before {
-      content: "";
-      @apply absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] mix-blend-overlay;
-      background-image:
-        linear-gradient(to right, currentColor 1px, transparent 1px),
-        linear-gradient(to bottom, currentColor 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-  }
-
-  .bg-diagonal-lines {
-    @apply relative;
-    &::before {
-      content: "";
-      @apply absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] mix-blend-overlay;
-      background-image: repeating-linear-gradient(
-        45deg,
-        currentColor,
-        currentColor 1px,
-        transparent 1px,
-        transparent 20px
-      );
-    }
-  }
-
-
-  .bg-geometric {
-    @apply relative overflow-hidden;
-    &::before {
-      content: "";
-      @apply absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] mix-blend-overlay;
-      background-image:
-        linear-gradient(30deg, currentColor 12%, transparent 12.5%, transparent 87%, currentColor 87.5%, currentColor),
-        linear-gradient(150deg, currentColor 12%, transparent 12.5%, transparent 87%, currentColor 87.5%, currentColor),
-        linear-gradient(30deg, currentColor 12%, transparent 12.5%, transparent 87%, currentColor 87.5%, currentColor),
-        linear-gradient(150deg, currentColor 12%, transparent 12.5%, transparent 87%, currentColor 87.5%, currentColor),
-        linear-gradient(60deg, rgba(0,0,0,0.1) 25%, transparent 25.5%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1)),
-        linear-gradient(60deg, rgba(0,0,0,0.1) 25%, transparent 25.5%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1));
-      background-size: 80px 140px;
-      background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-    }
-  }
-}
-
-/* Animation for fade in from bottom with staggered delay */
+/* An
+imation for fade in from bottom with staggered delay */
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -222,6 +189,7 @@
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -233,6 +201,7 @@
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -245,6 +214,7 @@
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -284,6 +254,7 @@
 
 /* Add prefers-reduced-motion support */
 @media (prefers-reduced-motion: reduce) {
+
   .animate-fadeInUp,
   .animate-fadeInUp-delay-1,
   .animate-fadeInUp-delay-2,
@@ -297,236 +268,27 @@
   }
 }
 
-
-/* Floating shapes animation */
+/* Basic floating animation for background elements */
 @keyframes float {
   0% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-15px) rotate(5deg);
   }
+
   100% {
     transform: translateY(0) rotate(0deg);
   }
 }
 
-/* Liquid blob animations for organic movement */
-@keyframes liquidFloat1 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    border-radius: 50% 40% 60% 30%;
-  }
-  25% {
-    transform: translate(20px, -15px) rotate(5deg) scale(1.05);
-    border-radius: 60% 30% 40% 70%;
-  }
-  50% {
-    transform: translate(-10px, 25px) rotate(-3deg) scale(0.95);
-    border-radius: 40% 70% 30% 60%;
-  }
-  75% {
-    transform: translate(30px, 10px) rotate(8deg) scale(1.02);
-    border-radius: 55% 45% 65% 35%;
-  }
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
-@keyframes liquidFloat2 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    border-radius: 40% 60% 50% 50%;
-  }
-  33% {
-    transform: translate(-25px, 20px) rotate(-8deg) scale(1.08);
-    border-radius: 70% 30% 60% 40%;
-  }
-  66% {
-    transform: translate(15px, -30px) rotate(12deg) scale(0.92);
-    border-radius: 30% 70% 40% 60%;
-  }
-}
 
-@keyframes liquidFloat3 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    border-radius: 60% 40% 40% 60%;
-  }
-  20% {
-    transform: translate(10px, -20px) rotate(3deg) scale(1.03);
-    border-radius: 50% 50% 30% 70%;
-  }
-  40% {
-    transform: translate(-20px, 15px) rotate(-6deg) scale(0.97);
-    border-radius: 70% 30% 50% 50%;
-  }
-  60% {
-    transform: translate(25px, 5px) rotate(9deg) scale(1.06);
-    border-radius: 40% 60% 70% 30%;
-  }
-  80% {
-    transform: translate(-5px, -25px) rotate(-4deg) scale(0.94);
-    border-radius: 65% 35% 45% 55%;
-  }
-}
 
-@keyframes liquidFloat4 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    border-radius: 45% 55% 60% 40%;
-  }
-  30% {
-    transform: translate(-15px, -10px) rotate(-5deg) scale(1.04);
-    border-radius: 60% 40% 30% 70%;
-  }
-  70% {
-    transform: translate(20px, 25px) rotate(7deg) scale(0.96);
-    border-radius: 35% 65% 55% 45%;
-  }
-}
-
-/* Additional liquid morphing animations */
-@keyframes liquidMorph1 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    border-radius: 50% 50% 50% 50%;
-  }
-  16% {
-    transform: translate(8px, -12px) rotate(2deg) scale(1.02);
-    border-radius: 65% 35% 45% 55%;
-  }
-  32% {
-    transform: translate(-15px, 18px) rotate(-4deg) scale(0.98);
-    border-radius: 40% 60% 70% 30%;
-  }
-  48% {
-    transform: translate(22px, 8px) rotate(6deg) scale(1.05);
-    border-radius: 75% 25% 35% 65%;
-  }
-  64% {
-    transform: translate(-8px, -20px) rotate(-3deg) scale(0.95);
-    border-radius: 30% 70% 60% 40%;
-  }
-  80% {
-    transform: translate(18px, -5px) rotate(7deg) scale(1.03);
-    border-radius: 55% 45% 25% 75%;
-  }
-}
-
-@keyframes liquidMorph2 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    border-radius: 60% 40% 30% 70%;
-  }
-  25% {
-    transform: translate(-20px, 15px) rotate(-6deg) scale(1.06);
-    border-radius: 30% 70% 60% 40%;
-  }
-  50% {
-    transform: translate(25px, -18px) rotate(8deg) scale(0.94);
-    border-radius: 70% 30% 40% 60%;
-  }
-  75% {
-    transform: translate(-12px, -8px) rotate(-4deg) scale(1.08);
-    border-radius: 45% 55% 75% 25%;
-  }
-}
-
-@keyframes liquidPulse1 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-    border-radius: 50% 50% 50% 50%;
-    opacity: 0.3;
-  }
-  25% {
-    transform: translate(5px, -8px) scale(1.1);
-    border-radius: 60% 40% 45% 55%;
-    opacity: 0.4;
-  }
-  50% {
-    transform: translate(-10px, 12px) scale(0.9);
-    border-radius: 40% 60% 65% 35%;
-    opacity: 0.2;
-  }
-  75% {
-    transform: translate(15px, 3px) scale(1.05);
-    border-radius: 55% 45% 30% 70%;
-    opacity: 0.35;
-  }
-}
-
-@keyframes liquidPulse2 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    border-radius: 45% 55% 60% 40%;
-    opacity: 0.25;
-  }
-  33% {
-    transform: translate(-8px, 10px) scale(1.08) rotate(3deg);
-    border-radius: 70% 30% 40% 60%;
-    opacity: 0.4;
-  }
-  66% {
-    transform: translate(12px, -15px) scale(0.92) rotate(-5deg);
-    border-radius: 35% 65% 55% 45%;
-    opacity: 0.15;
-  }
-}
-
-/* Trending background animations */
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes particleFloat {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 0.8;
-  }
-}
-
-@keyframes gridPulse {
-  0%, 100% {
-    opacity: 0.1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(1.1);
-  }
-}
-
-@keyframes auroraWave {
-  0% {
-    transform: translateX(-100%) rotate(0deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(360deg);
-  }
-}
-
-@keyframes geometricFloat {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    transform: translate(10px, -10px) rotate(90deg) scale(1.1);
-  }
-  50% {
-    transform: translate(-5px, 15px) rotate(180deg) scale(0.9);
-  }
-  75% {
-    transform: translate(-15px, -5px) rotate(270deg) scale(1.05);
-  }
-}
 
 
 @layer base {
@@ -535,6 +297,7 @@
     outline-color: var(--ring);
     outline-opacity: 0.5;
   }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -586,6 +349,8 @@
     border-color: var(--border);
     padding-left: 1rem;
   }
+}
+
 }
 
 /* Apply background effects to body */

@@ -175,11 +175,8 @@ const floatingVariants = {
     }),
 };
 
-// Enhanced CSS animation names for different liquid movements
-const liquidAnimations = [
-    "liquidFloat1", "liquidFloat2", "liquidFloat3", "liquidFloat4",
-    "liquidMorph1", "liquidMorph2", "liquidPulse1", "liquidPulse2"
-];
+// Basic float animation for smooth movement
+const floatAnimation = "float";
 
 export function AnimatedBackground({
     variant = "hero",
@@ -254,7 +251,7 @@ export function AnimatedBackground({
             )}
 
             {/* Animated liquid blobs */}
-            {blobs.map((blob, index) => (
+            {blobs.map((blob) => (
                 <motion.div
                     key={blob.id}
                     className={`absolute ${blob.color} ${blob.darkColor} mix-blend-multiply filter blur-3xl`}
@@ -264,7 +261,7 @@ export function AnimatedBackground({
                         left: `${blob.initialX}%`,
                         top: `${blob.initialY}%`,
                         transform: 'translate(-50%, -50%)',
-                        animation: `${liquidAnimations[index % liquidAnimations.length]} ${blob.animationDuration}s ease-in-out infinite`,
+                        animation: `${floatAnimation} ${blob.animationDuration}s ease-in-out infinite`,
                         animationDelay: `${blob.delay}s`,
                     }}
                     variants={floatingVariants}

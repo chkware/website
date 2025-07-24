@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
+// Configure route for dynamic behavior (required for API routes)
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 // Input validation schema
 const contactFormSchema = z.object({
   name: z.string()
@@ -79,7 +83,7 @@ export async function POST(request: NextRequest) {
     
     try {
       await rateLimiter.consume(clientIP);
-    } catch (rateLimiterRes) {
+    } catch {
       console.log(`Rate limit exceeded for IP: ${clientIP}`);
       return NextResponse.json(
         {
@@ -92,10 +96,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse and validate request body
-    let body: any;
+    let body: unknown;
     try {
       body = await request.json();
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         {
           success: false,
@@ -244,9 +248,10 @@ export async function POST(request: NextRequest) {
         message: 'Thank you for your message! We\'ll get back to you within 24 hours.',
       } as ContactResponse);
 
-    } catch (emailError: any) {
+    } catch (emailError: unknown) {
+      const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown error';
       console.error('Failed to send email:', {
-        error: emailError.message,
+        error: errorMessage,
         timestamp: new Date().toISOString(),
         // Don't log sensitive data
       });
@@ -255,15 +260,16 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           message: 'Failed to send message. Please try again or contact us directly.',
-          error: process.env.NODE_ENV === 'development' ? emailError.message : undefined,
+          error: process.env.NODE_ENV === 'development' ? errorMessage : undefined,
         } as ContactResponse,
         { status: 500 }
       );
     }
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Unexpected error in contact API:', {
-      error: error.message,
+      error: errorMessage,
       timestamp: new Date().toISOString(),
     });
 
@@ -271,7 +277,7 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         message: 'An unexpected error occurred. Please try again later.',
-        error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+        error: process.env.NODE_ENV === 'development' ? errorMessage : undefined,
       } as ContactResponse,
       { status: 500 }
     );

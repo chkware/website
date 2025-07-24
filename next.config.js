@@ -10,7 +10,7 @@ const withMDX = require('@next/mdx')({
 });
 
 const nextConfig = {
-  output: 'export',
+  // Removed 'output: export' to enable API routes
   trailingSlash: true,
   distDir: 'dist',
   compress: false,

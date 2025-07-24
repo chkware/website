@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Figtree } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/lib/theme-context";
@@ -11,17 +11,12 @@ import { SearchConsoleMeta } from "@/components/analytics/SearchConsole";
 import { PerformanceOptimizer } from "@/components/performance/PerformanceOptimizer";
 import "@/styles/globals.css";
 
-// Load the Supreme variable font
-const supreme = localFont({
-  src: [
-    {
-      path: '../../src/fonts/Supreme-Variable.woff2',
-      weight: '100 900',
-      style: 'normal',
-    },
-  ],
+// Load Figtree font from Google Fonts
+const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
   display: 'swap',
-  variable: '--font-supreme',
+  variable: '--font-figtree',
 });
 
 export const metadata: Metadata = generateMetadata();
@@ -35,10 +30,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <SearchConsoleMeta />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#3b82f6" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <script
@@ -61,7 +58,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${supreme.variable} font-sans antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
+      <body className={`${figtree.variable} font-sans antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
         <GoogleAnalytics />
         <PerformanceOptimizer />
         <BackgroundElements />
