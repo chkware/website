@@ -28,15 +28,11 @@ const contactFormSchema = z.object({
 
 // Rate limiter configuration
 const rateLimiter = new RateLimiterMemory({
-  keyGenerator: (req: NextRequest) => {
-    // Use IP address for rate limiting
-    const forwarded = req.headers.get('x-forwarded-for');
-    const ip = forwarded ? forwarded.split(',')[0] : req.ip || 'unknown';
-    return ip;
-  },
   points: parseInt(process.env.CONTACT_RATE_LIMIT_REQUESTS || '5'), // Number of requests
   duration: parseInt(process.env.CONTACT_RATE_LIMIT_WINDOW || '3600'), // Per 1 hour
 });
+
+
 
 // Response interfaces
 interface ContactResponse {
@@ -116,12 +112,12 @@ export async function POST(request: NextRequest) {
       validatedData = contactFormSchema.parse(body);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const firstError = error.errors[0];
+        const firstError = error.issues[0];
         return NextResponse.json(
           {
             success: false,
             message: firstError.message,
-            error: process.env.NODE_ENV === 'development' ? JSON.stringify(error.errors) : undefined,
+            error: process.env.NODE_ENV === 'development' ? JSON.stringify(error.issues) : undefined,
           } as ContactResponse,
           { status: 400 }
         );

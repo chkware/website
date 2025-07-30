@@ -10,7 +10,7 @@ export function preloadCriticalResources() {
     // Preload hero images
     const heroImageLink = document.createElement('link');
     heroImageLink.rel = 'preload';
-    heroImageLink.href = '/images/hero-demo.webp';
+    heroImageLink.href = '/images/hero-image.svg';
     heroImageLink.as = 'image';
     document.head.appendChild(heroImageLink);
   }

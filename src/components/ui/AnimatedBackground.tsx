@@ -15,7 +15,7 @@ interface BlobConfig {
 }
 
 interface AnimatedBackgroundProps {
-    variant?: "hero" | "subtle" | "vibrant";
+    variant?: "hero" | "subtle" | "vibrant" | "gradient";
     showSlateTexture?: boolean;
     customBlobs?: BlobConfig[];
 }
@@ -148,6 +148,63 @@ const defaultBlobConfigs: Record<string, BlobConfig[]> = {
             morphIntensity: "high",
         },
     ],
+    gradient: [
+        {
+            id: "blob1",
+            size: 600,
+            color: "bg-indigo-200",
+            darkColor: "dark:bg-indigo-900",
+            initialX: 20,
+            initialY: 15,
+            animationDuration: 35,
+            delay: 0,
+            morphIntensity: "low",
+        },
+        {
+            id: "blob2",
+            size: 550,
+            color: "bg-teal-200",
+            darkColor: "dark:bg-teal-900",
+            initialX: 80,
+            initialY: 30,
+            animationDuration: 30,
+            delay: 2,
+            morphIntensity: "low",
+        },
+        {
+            id: "blob3",
+            size: 500,
+            color: "bg-amber-200",
+            darkColor: "dark:bg-amber-900",
+            initialX: 40,
+            initialY: 70,
+            animationDuration: 32,
+            delay: 4,
+            morphIntensity: "low",
+        },
+        {
+            id: "blob4",
+            size: 480,
+            color: "bg-fuchsia-200",
+            darkColor: "dark:bg-fuchsia-900",
+            initialX: 65,
+            initialY: 85,
+            animationDuration: 28,
+            delay: 1,
+            morphIntensity: "low",
+        },
+        {
+            id: "blob5",
+            size: 450,
+            color: "bg-lime-200",
+            darkColor: "dark:bg-lime-900",
+            initialX: 10,
+            initialY: 50,
+            animationDuration: 33,
+            delay: 5,
+            morphIntensity: "low",
+        },
+    ],
 };
 
 // Enhanced floating animation variants for ultra-liquid movement
@@ -169,7 +226,7 @@ const floatingVariants = {
             duration: custom.duration,
             delay: custom.delay,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: [0.4, 0, 0.2, 1],
             times: [0, 0.2, 0.4, 0.6, 0.8, 1],
         },
     }),
@@ -185,70 +242,10 @@ export function AnimatedBackground({
 }: AnimatedBackgroundProps) {
     const blobs = customBlobs || defaultBlobConfigs[variant] || defaultBlobConfigs.hero;
 
-    // Generate random positions for particles
-    const generateParticles = () => {
-        return Array.from({ length: 8 }, (_, i) => ({
-            id: i,
-            x: Math.random() * 100,
-            y: Math.random() * 100,
-            size: Math.random() * 3 + 1,
-            duration: Math.random() * 15 + 10,
-            delay: Math.random() * 8,
-        }));
-    };
 
-    const particles = React.useMemo(generateParticles, []);
 
     return (
         <div className="absolute inset-0 w-full h-full overflow-hidden opacity-60 dark:opacity-40 pointer-events-none" style={{ zIndex: -1 }}>
-            {/* Enhanced Slate texture background with depth */}
-            {showSlateTexture && (
-                <>
-                    {/* Base slate texture */}
-                    <div
-                        className="absolute inset-0 opacity-30 dark:opacity-15"
-                        style={{
-                            backgroundImage: `
-                radial-gradient(circle at 25% 25%, rgba(148, 163, 184, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 75% 75%, rgba(100, 116, 139, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 10%, rgba(71, 85, 105, 0.06) 0%, transparent 40%),
-                linear-gradient(45deg, rgba(148, 163, 184, 0.04) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(100, 116, 139, 0.04) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, rgba(148, 163, 184, 0.03) 75%),
-                linear-gradient(-45deg, transparent 75%, rgba(100, 116, 139, 0.03) 75%)
-              `,
-                            backgroundSize: '120px 120px, 160px 160px, 200px 200px, 40px 40px, 40px 40px, 40px 40px, 40px 40px',
-                            backgroundPosition: '0 0, 80px 80px, 40px 20px, 0 0, 20px 20px, 20px 20px, 40px 40px'
-                        }}
-                    />
-
-                    {/* Subtle noise texture overlay */}
-                    <div
-                        className="absolute inset-0 opacity-20 dark:opacity-10 mix-blend-overlay"
-                        style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                            backgroundSize: '180px 180px'
-                        }}
-                    />
-
-                    {/* Animated subtle grain */}
-                    <motion.div
-                        className="absolute inset-0 opacity-10 dark:opacity-5"
-                        animate={{
-                            backgroundPosition: ['0px 0px', '100px 100px', '0px 0px'],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                            ease: "linear"
-                        }}
-                        style={{
-                            backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.3) 1px, transparent 1px)`,
-                            backgroundSize: '50px 50px'
-                        }}
-                    />
-                </>
-            )}
 
             {/* Animated liquid blobs */}
             {blobs.map((blob) => (
@@ -264,40 +261,22 @@ export function AnimatedBackground({
                         animation: `${floatAnimation} ${blob.animationDuration}s ease-in-out infinite`,
                         animationDelay: `${blob.delay}s`,
                     }}
-                    variants={floatingVariants}
-                    animate="animate"
-                    custom={{
-                        duration: blob.animationDuration,
-                        delay: blob.delay
-                    }}
-                />
-            ))}
-
-            {/* Additional floating particles for extra life */}
-            {particles.map((particle) => (
-                <motion.div
-                    key={`particle-${particle.id}`}
-                    className="absolute bg-white/20 dark:bg-white/10 rounded-full"
-                    style={{
-                        width: particle.size,
-                        height: particle.size,
-                        left: `${particle.x}%`,
-                        top: `${particle.y}%`,
-                    }}
                     animate={{
-                        x: [0, Math.random() * 80 - 40],
-                        y: [0, Math.random() * 80 - 40],
-                        opacity: [0.1, 0.6, 0.1],
-                        scale: [1, 1.5, 1],
+                        x: [0, 20, -15, 25, -10, 0],
+                        y: [0, -20, 25, -15, 20, 0],
+                        scale: [1, 1.05, 0.98, 1.03, 0.99, 1],
+                        rotate: [0, 2, -1, 3, -1, 0],
                     }}
                     transition={{
-                        duration: particle.duration,
-                        delay: particle.delay,
+                        duration: blob.animationDuration,
+                        delay: blob.delay,
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
                 />
             ))}
+
+
         </div>
     );
 }

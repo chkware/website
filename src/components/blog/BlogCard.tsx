@@ -28,7 +28,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
       "from-blue-600 via-blue-700 to-blue-800",
       "from-purple-600 via-blue-600 to-blue-700",
       "from-pink-400 via-purple-500 to-blue-600",
-      "from-green-400 via-blue-500 to-purple-600",
+      "from-green-400 via-blue-600 to-purple-600",
       "from-blue-800 via-blue-900 to-black",
       "from-indigo-600 via-purple-600 to-pink-600"
     ];

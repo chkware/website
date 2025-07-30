@@ -3,7 +3,7 @@ import { Figtree } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/lib/theme-context";
-import { BackgroundElements } from "@/components/ui/BackgroundElements";
+
 import { MDXComponents } from "@/components/mdx-components";
 import { generateMetadata } from "@/lib/seo/metadata";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -14,9 +14,11 @@ import "@/styles/globals.css";
 // Load Figtree font from Google Fonts
 const figtree = Figtree({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-figtree',
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
 export const metadata: Metadata = generateMetadata();
@@ -30,6 +32,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <SearchConsoleMeta />
+        {/* Font preloading for better performance */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -57,11 +69,31 @@ export default function RootLayout({
             `,
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Font loading verification
+              document.addEventListener('DOMContentLoaded', function() {
+                const testElement = document.createElement('div');
+                testElement.style.fontFamily = 'var(--font-figtree), system-ui, sans-serif';
+                testElement.style.position = 'absolute';
+                testElement.style.visibility = 'hidden';
+                testElement.textContent = 'Font Test';
+                document.body.appendChild(testElement);
+                
+                const computedStyle = window.getComputedStyle(testElement);
+                console.log('🎨 Font family applied:', computedStyle.fontFamily);
+                console.log('🎨 CSS Variable --font-figtree:', getComputedStyle(document.documentElement).getPropertyValue('--font-figtree'));
+                
+                document.body.removeChild(testElement);
+              });
+            `,
+          }}
+        />
       </head>
       <body className={`${figtree.variable} font-sans antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
         <GoogleAnalytics />
         <PerformanceOptimizer />
-        <BackgroundElements />
         <ThemeProvider>
           <MDXComponents>
             <Navbar />

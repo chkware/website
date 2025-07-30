@@ -18,10 +18,8 @@ export function BlogJsonLd({ post, url }: BlogJsonLdProps) {
   // Format date in ISO format
   const datePublished = new Date(post.date).toISOString();
 
-  // Get the modified date if available, otherwise use the published date
-  const dateModified = post.lastUpdated
-    ? new Date(post.lastUpdated).toISOString()
-    : datePublished;
+  // Use the published date as the modified date for now
+  const dateModified = datePublished;
 
   // Prepare author data
   const authors = post.authors.map(author => ({

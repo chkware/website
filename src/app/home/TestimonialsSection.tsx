@@ -182,7 +182,7 @@ export function TestimonialsSection() {
                   className={cn(
                     "transition-all duration-500",
                     current === idx
-                      ? "w-10 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                      ? "w-10 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
                       : "w-3 h-3 bg-gray-300 dark:bg-gray-700 rounded-full hover:bg-gray-400 dark:hover:bg-gray-600"
                   )}
                   aria-label={`Go to testimonial ${idx + 1}`}

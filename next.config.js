@@ -19,15 +19,27 @@ const nextConfig = {
   },
   // Configure pageExtensions to include md and mdx
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  // Webpack configuration to prevent chunk loading issues
+  webpack: (config, { dev, isServer }) => {
+    // Prevent chunk loading errors in development
+    if (dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          ...config.optimization.splitChunks,
+          cacheGroups: {
+            ...config.optimization.splitChunks.cacheGroups,
+            default: false,
+            vendors: false,
+          },
+        },
+      };
+    }
+    return config;
+  },
   // Optionally, add any other Next.js config below
   experimental: {
     mdxRs: true, // Use the new Rust-based MDX parser
-    turbo: {
-      // Configure Turbopack
-      resolveAlias: {
-        // Add any module aliases here
-      },
-    },
   },
 };
 

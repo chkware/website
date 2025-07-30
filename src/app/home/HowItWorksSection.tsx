@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/Container";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { FileCode, Play, HardDrive, Box } from "lucide-react";
 import Link from "next/link";
 
@@ -69,20 +70,31 @@ export function HowItWorksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="h-full group"
             >
-              <Card className="h-full p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 relative overflow-hidden">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
-                    {step.icon}
+              <div className="relative h-full rounded-2xl border p-2">
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                />
+                
+                <div className="relative h-full bg-white/30 dark:bg-gray-900/30 backdrop-blur-md rounded-xl border border-white/40 dark:border-gray-700/40 hover:bg-white/40 dark:hover:bg-gray-900/40 transition-all duration-300 shadow-lg dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+                  <div className="p-6 h-full flex flex-col items-center text-center">
+                    <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
+                      {step.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm flex-grow">
+                      {step.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    {step.description}
-                  </p>
                 </div>
-              </Card>
+              </div>
             </motion.div>
           ))}
         </div>

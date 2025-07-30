@@ -30,7 +30,7 @@ export function FeaturedPost({ post }: FeaturedPostProps) {
       <Link href={`/blog/${post.slug}`} className="block group">
         <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
           {/* Featured Image */}
-          <div className="relative h-48 md:h-64 lg:h-80 bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 rounded-2xl overflow-hidden">
+          <div className="relative h-48 md:h-64 lg:h-80 bg-gradient-to-br from-green-400 via-blue-600 to-purple-600 rounded-2xl overflow-hidden">
             <div className="absolute inset-0 bg-black/20"></div>
             <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 text-white">
               <div className="text-xs md:text-sm font-medium mb-1 md:mb-2 opacity-90">FEATURED</div>

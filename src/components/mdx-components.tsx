@@ -53,7 +53,7 @@ const components = {
     return (
       <div className="my-8 relative">
         <Image
-          src={src}
+          src={src as string}
           alt={alt || ''}
           width={width ? Number(width) : 800}
           height={height ? Number(height) : 500}
@@ -100,7 +100,7 @@ const components = {
 
     // For code blocks with language, CodeBlock component will handle it
     const language = className.replace('language-', '');
-    return <CodeBlock language={language} {...props} />;
+    return <CodeBlock language={language} {...props}>{props.children}</CodeBlock>;
   },
 };
 

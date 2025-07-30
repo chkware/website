@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/Container";
 import { Send, MessageCircle, Mail, Phone, CheckCircle, AlertCircle } from "lucide-react";
+import { GlowButton } from "@/components/ui/glowing-effect";
+import { LabelInputContainer, Label, Input, Textarea } from "@/components/ui/signup-form";
 
 // Custom X (Twitter) icon component
 function XIcon({ className }: { className?: string }) {
@@ -81,45 +83,34 @@ function FormField({
   onChange, 
   error 
 }: FormFieldProps) {
-  const baseClasses = `w-full rounded-lg border ${
-    error 
-      ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
-      : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500'
-  } bg-white dark:bg-gray-900 p-3 text-sm text-gray-900 dark:text-gray-100 focus:ring-1 transition-colors`;
-
   return (
-    <div>
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-      >
-        {label}
-      </label>
-      {type === "textarea" ? (
-        <textarea
-          id={id}
-          rows={rows || 4}
-          className={baseClasses}
-          placeholder={placeholder}
-          required={required}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
-      ) : (
-        <input
-          type={type}
-          id={id}
-          className={baseClasses}
-          placeholder={placeholder}
-          required={required}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
-      )}
+    <LabelInputContainer>
+      <Label htmlFor={id}>{label}</Label>
+      <div className="group/input">
+        {type === "textarea" ? (
+          <Textarea
+            id={id}
+            rows={rows || 4}
+            placeholder={placeholder}
+            required={required}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+          />
+        ) : (
+          <Input
+            type={type}
+            id={id}
+            placeholder={placeholder}
+            required={required}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+          />
+        )}
+      </div>
       {error && (
         <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>
       )}
-    </div>
+    </LabelInputContainer>
   );
 }
 
@@ -375,24 +366,23 @@ export function ContactSection() {
                   error={fieldErrors.message}
                 />
 
-                <Button
+                <GlowButton
                   type="submit"
-                  size="lg"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 h-12 text-base font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full"
                 >
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      Sending...
+                      <span className="ml-2">Sending...</span>
                     </>
                   ) : (
                     <>
                       <Send className="h-5 w-5" />
-                      Send Message
+                      <span className="ml-2">Send Message</span>
                     </>
                   )}
-                </Button>
+                </GlowButton>
               </form>
             </Card>
           </motion.div>

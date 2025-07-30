@@ -95,7 +95,7 @@ export function FuturisticFeatureCard({
             viewport={{ once: true }}
             className={cn(
               "h-0.5 bg-gradient-to-r",
-              variant === "cyberpunk" && "from-cyan-400 to-blue-500",
+              variant === "cyberpunk" && "from-cyan-400 to-blue-600",
               variant === "neon" && "from-pink-400 to-purple-500",
               variant === "holographic" && "from-emerald-400 to-cyan-500"
             )}
@@ -149,7 +149,7 @@ export function FuturisticFeatureCard({
           <div className={cn(
             "absolute inset-0 bg-gradient-to-br opacity-20",
             variant === "cyberpunk" && "from-cyan-500/30 via-transparent to-purple-500/30",
-            variant === "neon" && "from-pink-500/30 via-transparent to-blue-500/30",
+            variant === "neon" && "from-pink-500/30 via-transparent to-blue-600/30",
             variant === "holographic" && "from-emerald-500/30 via-transparent to-cyan-500/30"
           )} />
           

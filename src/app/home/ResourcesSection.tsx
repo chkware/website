@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/Container";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { BookOpenIcon, BookmarkIcon, GraduationCapIcon, UsersIcon } from "lucide-react";
 
 const resources = [
@@ -60,24 +60,41 @@ export function ResourcesSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
+              className="h-full group"
             >
               <Link href={resource.link} className="block h-full">
-                <Card className="h-full overflow-hidden border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200">
-                  <div className="p-6">
-                    <div className={`w-14 h-14 rounded-lg ${resource.color} flex items-center justify-center mb-5`}>
-                      {resource.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{resource.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400">{resource.description}</p>
+                <div className="relative h-full rounded-2xl border p-2">
+                  <GlowingEffect
+                    spread={40}
+                    glow={true}
+                    disabled={false}
+                    proximity={64}
+                    inactiveZone={0.01}
+                  />
+                  
+                  <div className="relative h-full bg-white/30 dark:bg-gray-900/30 backdrop-blur-md rounded-xl border border-white/40 dark:border-gray-700/40 hover:bg-white/40 dark:hover:bg-gray-900/40 transition-all duration-300 shadow-lg dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+                    <div className="p-6 h-full flex flex-col">
+                      <div className={`w-14 h-14 rounded-lg ${resource.color} flex items-center justify-center mb-5`}>
+                        {resource.icon}
+                      </div>
+                      
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 md:text-2xl">
+                        {resource.title}
+                      </h3>
+                      
+                      <p className="text-gray-700 dark:text-gray-300 flex-grow text-sm md:text-base">
+                        {resource.description}
+                      </p>
 
-                    <div className="mt-4 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400">
-                      Explore {resource.title}
-                      <svg className="ml-1 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
+                      <div className="mt-4 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+                        Explore {resource.title}
+                        <svg className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                </Card>
+                </div>
               </Link>
             </motion.div>
           ))}

@@ -1,14 +1,27 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 // import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/Container";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
-import { ArrowRight, Code } from "lucide-react";
+import { ArrowRight, Copy, Check } from "lucide-react";
+import { GlowCard, GlowButton } from "@/components/ui/glowing-effect";
 
 export function HeroSection() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyCommand = async () => {
+    try {
+      await navigator.clipboard.writeText('pipx install chk');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+
   return (
     <section className="relative overflow-hidden min-h-[90vh] flex items-center z-0">
       {/* Animated liquid background with slate texture */}
@@ -49,21 +62,28 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-              <Button asChild className="px-6 py-2 h-12 text-base border border-gray-700 dark:border-gray-600 bg-black/90 backdrop-filter backdrop-blur-sm">
-                <Link href="/docs/getting-started">
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
+              <Button asChild className="px-6 py-2 h-12 text-base border border-gray-700 dark:border-gray-300 bg-black/90 dark:bg-white text-white dark:text-black backdrop-filter backdrop-blur-sm hover:bg-black dark:hover:bg-gray-100">
+                <Link href="https://www.chkware.com/docs/quick-start/">
+                  Quick Start <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="px-6 py-2 h-12 text-base gap-2 dark:text-white"
+              <GlowButton
+                className="font-mono"
+                onClick={handleCopyCommand}
               >
-                <Link href="#features" className="flex items-center">
-                  <Code className="h-5 w-5" />
-                  View Features
-                </Link>
-              </Button>
+                <span className="text-blue-400">$</span>
+                <span className="ml-2">pipx install chk</span>
+                {copied ? (
+                  <Check className="h-4 w-4 ml-2 text-green-400" />
+                ) : (
+                  <Copy className="h-4 w-4 ml-2" />
+                )}
+                {copied && (
+                  <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
+                    Copied!
+                  </span>
+                )}
+              </GlowButton>
             </div>
           </motion.div>
 
@@ -75,18 +95,19 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div className="relative">
-              <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
-                <div className="bg-gray-100 dark:bg-gray-800 p-1 flex items-center space-x-1">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-500"></div>
-                  <div className="ml-2 text-xs font-medium text-gray-600 dark:text-gray-300">
-                    user-login-request.chk
+              <GlowCard className="rounded-xl">
+                <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+                  <div className="bg-gray-100 dark:bg-gray-800 p-1 flex items-center space-x-1">
+                    <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                    <div className="h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
+                    <div className="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                    <div className="ml-2 text-xs font-medium text-gray-600 dark:text-gray-300">
+                      user-login-request.chk
+                    </div>
                   </div>
-                </div>
-                <pre className="bg-gray-900 p-4 rounded-b-lg text-xs sm:text-sm overflow-auto text-gray-100">
-                  <code>
-                    {`# Get joke 614 from XKCD.com
+                  <pre className="bg-gray-900 p-4 rounded-b-lg text-xs sm:text-sm overflow-auto text-gray-100">
+                    <code>
+                      {`# Get joke 614 from XKCD.com
 ---
 version: default:http:0.7.2
 
@@ -99,9 +120,10 @@ expose:
 
 
 `}
-                  </code>
-                </pre>
-              </div>
+                    </code>
+                  </pre>
+                </div>
+              </GlowCard>
 
               {/* Floating status badge */}
               <div className="absolute -bottom-8 -left-12 rounded-lg bg-white dark:bg-gray-900 p-4 border border-gray-200 dark:border-gray-800 text-center w-60 animate-fadeInUp-delay-2">

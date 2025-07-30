@@ -276,9 +276,9 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
                   height={imgHeight}
                   className="rounded-md w-full h-auto object-cover"
                 />
-                {domNode.next?.name === 'figcaption' && (
+                {domNode.next && 'name' in domNode.next && domNode.next.name === 'figcaption' && (
                   <figcaption className="text-sm text-center text-gray-700 dark:text-gray-300 mt-2">
-                    {domToReact(domNode.next.children, options)}
+                    {domToReact((domNode.next as any).children, options)}
                   </figcaption>
                 )}
               </div>
@@ -308,7 +308,7 @@ export function BlogContentBody({ content, className }: BlogContentBodyProps) {
                 rel="noopener noreferrer"
                 className="text-gray-900 dark:text-white font-medium border-b border-gray-300 dark:border-gray-600 hover:border-gray-900 dark:hover:border-gray-300 transition-colors"
               >
-                {domToReact(domNode.children, options)}
+                {domToReact(domNode.children as any, options)}
               </a>
             );
           }

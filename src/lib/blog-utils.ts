@@ -86,7 +86,7 @@ export function getAllBlogPosts(): BlogPost[] {
       description: post.excerpt,
       authors: [author],
       tags: post.tags,
-      readingTime: typeof readingTimeResult === 'string' ? readingTimeResult : `${Math.ceil(readingTimeResult.minutes)} min read`,
+      readingTime: typeof readingTimeResult === 'string' ? readingTimeResult : `${Math.ceil((readingTimeResult as any).minutes)} min read`,
       content: post.content,
       draft: false, // Assuming all posts in static data are published
       image: post.coverImage,

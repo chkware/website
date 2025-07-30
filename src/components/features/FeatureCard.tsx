@@ -48,7 +48,7 @@ export function FeatureCard({
           <div className="mb-6 relative">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
               <div className="text-gray-600 dark:text-gray-300">
-                {React.cloneElement(icon, { 
+                {React.cloneElement(icon as React.ReactElement<any>, { 
                   className: 'h-6 w-6',
                   strokeWidth: 1.5
                 })}

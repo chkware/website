@@ -129,7 +129,15 @@ export function Footer() {
                 </span>
                 <span className="mx-2 text-neutral-300 dark:text-neutral-700">•</span>
                 <span className="inline-flex items-center text-sm text-neutral-500 dark:text-neutral-400">
-                  <Heart size={14} className="text-red-500 mr-1" /> Made with love
+                  Crafted by{" "}
+                  <a
+                    href="https://mindscraft.dev/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-1 text-[#0070f3] hover:text-[#0070f3]/80 transition-colors font-medium"
+                  >
+                    Mindscraft
+                  </a>
                 </span>
               </div>
             </div>
