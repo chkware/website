@@ -18,7 +18,6 @@ const figtree = Figtree({
   display: 'swap',
   variable: '--font-figtree',
   preload: true,
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
 export const metadata: Metadata = generateMetadata();
@@ -75,7 +74,7 @@ export default function RootLayout({
               // Font loading verification
               document.addEventListener('DOMContentLoaded', function() {
                 const testElement = document.createElement('div');
-                testElement.style.fontFamily = 'var(--font-figtree), system-ui, sans-serif';
+                testElement.style.fontFamily = 'var(--font-figtree, system-ui), sans-serif';
                 testElement.style.position = 'absolute';
                 testElement.style.visibility = 'hidden';
                 testElement.textContent = 'Font Test';
@@ -84,6 +83,7 @@ export default function RootLayout({
                 const computedStyle = window.getComputedStyle(testElement);
                 console.log('🎨 Font family applied:', computedStyle.fontFamily);
                 console.log('🎨 CSS Variable --font-figtree:', getComputedStyle(document.documentElement).getPropertyValue('--font-figtree'));
+                console.log('🎨 Body classes:', document.body.className);
                 
                 document.body.removeChild(testElement);
               });
@@ -91,7 +91,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${figtree.variable} font-sans antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
+      <body className={`${figtree.className} ${figtree.variable} font-sans antialiased text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
         <GoogleAnalytics />
         <PerformanceOptimizer />
         <ThemeProvider>

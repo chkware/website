@@ -78,7 +78,7 @@ export default function AceternityTestPage() {
 
               {/* Sub-headline */}
               <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
-                Streamline your API development and testing with elegant, reusable YAML configuration specs. 
+                Streamline your API development and testing with elegant, reusable YAML configuration specs.
                 Spend less time fixing and more time building.
               </p>
 
@@ -94,7 +94,7 @@ export default function AceternityTestPage() {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                
+
                 <Button
                   variant="outline"
                   size="lg"
@@ -141,9 +141,8 @@ export default function AceternityTestPage() {
                   {codeLines.slice(0, currentLine).map((line, index) => (
                     <div
                       key={index}
-                      className={`transition-all duration-300 ${
-                        index === currentLine - 1 ? 'animate-pulse' : ''
-                      }`}
+                      className={`transition-all duration-300 ${index === currentLine - 1 ? 'animate-pulse' : ''
+                        }`}
                     >
                       {line.startsWith('#') ? (
                         <span className="text-gray-400">{line}</span>
@@ -225,7 +224,7 @@ export default function AceternityTestPage() {
               See how CHKware transforms your API testing workflow
             </p>
           </div>
-          
+
           {/* Feature 1: 4x Faster Automation */}
           <div className="mb-20">
             <div className="text-center mb-12">
@@ -236,17 +235,17 @@ export default function AceternityTestPage() {
                 Transform your slow, manual testing processes into lightning-fast automated workflows
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <AutomationSpeedSVG 
-                  width={500} 
+                <AutomationSpeedSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Before</h4>
@@ -273,17 +272,17 @@ export default function AceternityTestPage() {
                 Rock-solid testing infrastructure that you can depend on for critical deployments
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <ReliabilityUptimeSVG 
-                  width={500} 
+                <ReliabilityUptimeSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Before</h4>
@@ -310,17 +309,17 @@ export default function AceternityTestPage() {
                 Seamlessly integrate with your existing tools and workflows in minutes, not hours
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <EasyIntegrationSVG 
-                  width={500} 
+                <EasyIntegrationSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Before</h4>
@@ -347,17 +346,17 @@ export default function AceternityTestPage() {
                 Transform your development workflow from slow, manual processes to rapid, automated project deployment
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <ProjectLaunchpadSVG 
-                  width={500} 
+                <ProjectLaunchpadSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Traditional Deployment</h4>
@@ -384,17 +383,17 @@ export default function AceternityTestPage() {
                 Transform chaotic, complex processes into clean, efficient, and lightning-fast workflows
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <StreamlinedWorkflowSVG 
-                  width={500} 
+                <StreamlinedWorkflowSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Complex Processes</h4>
@@ -421,17 +420,17 @@ export default function AceternityTestPage() {
                 A comprehensive suite of precision-engineered tools designed for speed, accuracy, and seamless API development
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <PrecisionToolkitSVG 
-                  width={500} 
+                <PrecisionToolkitSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               <div className="text-center">
                 <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -479,17 +478,17 @@ export default function AceternityTestPage() {
                 Launch projects faster than ever with streamlined workflow tools designed for speedy delivery and precision
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <APIAccelerationSVG 
-                  width={500} 
+                <APIAccelerationSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Traditional Development</h4>
@@ -510,7 +509,7 @@ export default function AceternityTestPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Key metrics */}
             <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12">
               <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
@@ -538,17 +537,17 @@ export default function AceternityTestPage() {
                 Transform complex project tasks through our streamlined workflow with precision tools for speedy delivery
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <AssemblyLineLaunchSVG 
-                  width={500} 
+                <AssemblyLineLaunchSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="text-center">
                 <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -585,7 +584,7 @@ export default function AceternityTestPage() {
                 </p>
               </div>
             </div>
-            
+
             {/* Process benefits */}
             <div className="mt-12 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl p-8 max-w-4xl mx-auto">
               <div className="text-center mb-6">
@@ -621,17 +620,17 @@ export default function AceternityTestPage() {
                 Effortless transformation from complex chaos to perfect structure. Let us handle the details while you focus on what matters.
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <MagicWandAutomationSVG 
-                  width={500} 
+                <MagicWandAutomationSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Complex Details</h4>
@@ -640,7 +639,7 @@ export default function AceternityTestPage() {
                 </p>
                 <div className="mt-4 flex items-center justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
                   <span>&lt;/&gt;</span>
-                  <span>{}</span>
+                  <span>{ }</span>
                   <span>?</span>
                   <span>!</span>
                 </div>
@@ -660,7 +659,7 @@ export default function AceternityTestPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Magic capabilities */}
             <div className="mt-12 bg-gradient-to-r from-blue-50 via-cyan-50 to-blue-50 dark:from-blue-900/20 dark:via-cyan-900/20 dark:to-blue-900/20 rounded-2xl p-8 max-w-5xl mx-auto">
               <div className="text-center mb-8">
@@ -708,7 +707,7 @@ export default function AceternityTestPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Call to action */}
             <div className="text-center mt-8">
               <p className="text-lg font-medium text-gray-900 dark:text-white mb-2">
@@ -730,17 +729,17 @@ export default function AceternityTestPage() {
                 Simplify API testing by connecting simple goals to get robust results. One connection triggers complex automation.
               </p>
             </div>
-            
+
             <div className="flex justify-center mb-8">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-                <LowCodeConnectionSVG 
-                  width={500} 
+                <LowCodeConnectionSVG
+                  width={500}
                   height={250}
                   className="mx-auto"
                 />
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
@@ -776,7 +775,7 @@ export default function AceternityTestPage() {
                 </p>
               </div>
             </div>
-            
+
             {/* Low-code benefits */}
             <div className="mt-12 bg-gradient-to-r from-blue-50 via-slate-50 to-emerald-50 dark:from-blue-900/20 dark:via-slate-900/20 dark:to-emerald-900/20 rounded-2xl p-8 max-w-5xl mx-auto">
               <div className="text-center mb-8">
@@ -822,7 +821,7 @@ export default function AceternityTestPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Simplicity metrics */}
             <div className="mt-8 grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
               <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">

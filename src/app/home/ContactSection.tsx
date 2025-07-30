@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/Container";
 import { Send, MessageCircle, Mail, Phone, CheckCircle, AlertCircle } from "lucide-react";
-import { GlowButton } from "@/components/ui/glowing-effect";
+import { GlowButton, GlowingEffect } from "@/components/ui/glowing-effect";
 import { LabelInputContainer, Label, Input, Textarea } from "@/components/ui/signup-form";
 
 // Custom X (Twitter) icon component
@@ -296,7 +296,17 @@ export function ContactSection() {
             viewport={{ once: true }}
             className="w-full lg:w-3/5"
           >
-            <Card className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-10 w-full border-0">
+            <div className="relative rounded-2xl">
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                blur={0}
+                borderWidth={1}
+              />
+              <Card className="relative bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl px-10 py-12 w-full border border-white/20 dark:border-gray-700/30 shadow-2xl shadow-blue-500/10">
               <div className="mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   Send us a message
@@ -384,7 +394,8 @@ export function ContactSection() {
                   )}
                 </GlowButton>
               </form>
-            </Card>
+              </Card>
+            </div>
           </motion.div>
 
           {/* Contact Methods - Right Side */}

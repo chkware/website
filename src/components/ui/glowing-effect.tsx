@@ -80,7 +80,7 @@ const GlowingEffect = memo(({
       animate(currentAngle, newAngle, {
         duration: movementDuration,
         ease: [0.16, 1, 0.3, 1],
-        onUpdate: (value) => {
+        onUpdate: (value: number) => {
           element.style.setProperty("--start", String(value));
         },
       });
@@ -165,10 +165,9 @@ export { GlowingEffect };
 interface GlowCardProps {
   children: React.ReactNode;
   className?: string;
-  identifier?: string;
 }
 
-export function GlowCard({ children, className, identifier }: GlowCardProps) {
+export function GlowCard({ children, className }: GlowCardProps) {
   return (
     <div className={cn("relative group", className)}>
       <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
