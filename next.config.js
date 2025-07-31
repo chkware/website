@@ -41,6 +41,12 @@ const nextConfig = {
   experimental: {
     mdxRs: true, // Use the new Rust-based MDX parser
   },
+  turbopack: {
+    // Configure Turbopack
+    resolveAlias: {
+      // Add any module aliases here
+    },
+  }
 };
 
 // Merge MDX config with Next.js config
