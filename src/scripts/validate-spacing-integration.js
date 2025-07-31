@@ -7,8 +7,8 @@
  * - Checks with varying content lengths to ensure spacing remains consistent
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs'
+import path from 'path'
 
 // Colors for console output
 const colors = {

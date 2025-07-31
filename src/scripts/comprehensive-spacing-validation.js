@@ -8,8 +8,8 @@
  * - Requirements: 1.1, 1.2, 3.1, 3.2, 3.3, 4.4
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs'
+import path from 'path'
 
 // Colors for console output
 const colors = {
@@ -164,7 +164,7 @@ function validateSectionImplementation() {
   
   let allValid = true;
   
-  SECTIONS.forEach((section, index) => {
+  SECTIONS.forEach((section) => {
     logInfo(`Validating ${section.name}...`);
     
     const fullPath = path.join(process.cwd(), section.file);
@@ -540,7 +540,7 @@ function runComprehensiveValidation() {
   
   const results = [];
   
-  validations.forEach((validation, index) => {
+  validations.forEach((validation) => {
     try {
       const result = validation.fn();
       results.push({ name: validation.name, passed: result });
