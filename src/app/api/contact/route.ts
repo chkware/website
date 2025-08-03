@@ -1,10 +1,59 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 // Configure route for dynamic behavior (required for API routes)
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
+
+// Simple in-memory rate limiter to avoid drizzle-orm dependency issues
+class SimpleRateLimiter {
+  private requests: Map<string, number[]> = new Map();
+  private maxRequests: number;
+  private windowMs: number;
+
+  constructor(maxRequests: number, windowMs: number) {
+    this.maxRequests = maxRequests;
+    this.windowMs = windowMs;
+  }
+
+  async consume(key: string): Promise<void> {
+    const now = Date.now();
+    const requests = this.requests.get(key) || [];
+    
+    // Remove old requests outside the window
+    const validRequests = requests.filter(time => now - time < this.windowMs);
+    
+    if (validRequests.length >= this.maxRequests) {
+      throw new Error('Rate limit exceeded');
+    }
+    
+    validRequests.push(now);
+    this.requests.set(key, validRequests);
+    
+    // Clean up old entries periodically
+    if (Math.random() < 0.01) { // 1% chance to clean up
+      this.cleanup();
+    }
+  }
+
+  private cleanup(): void {
+    const now = Date.now();
+    for (const [key, requests] of this.requests.entries()) {
+      const validRequests = requests.filter(time => now - time < this.windowMs);
+      if (validRequests.length === 0) {
+        this.requests.delete(key);
+      } else {
+        this.requests.set(key, validRequests);
+      }
+    }
+  }
+}
+
+// Rate limiter configuration
+const rateLimiter = new SimpleRateLimiter(
+  parseInt(process.env.CONTACT_RATE_LIMIT_REQUESTS || '5'), // Number of requests
+  parseInt(process.env.CONTACT_RATE_LIMIT_WINDOW || '3600') * 1000 // Convert to milliseconds
+);
 
 // Input validation schema
 const contactFormSchema = z.object({
@@ -25,14 +74,6 @@ const contactFormSchema = z.object({
     .max(2000, 'Message must be less than 2000 characters')
     .trim(),
 });
-
-// Rate limiter configuration
-const rateLimiter = new RateLimiterMemory({
-  points: parseInt(process.env.CONTACT_RATE_LIMIT_REQUESTS || '5'), // Number of requests
-  duration: parseInt(process.env.CONTACT_RATE_LIMIT_WINDOW || '3600'), // Per 1 hour
-});
-
-
 
 // Response interfaces
 interface ContactResponse {

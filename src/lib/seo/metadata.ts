@@ -122,8 +122,10 @@ export function generateOrganizationStructuredData(): StructuredDataOrganization
 // Generate Next.js metadata object
 export function generateMetadata(config: Partial<SEOConfig> = {}): Metadata {
   const seoConfig = { ...defaultSEO, ...config };
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://chkware.com';
   
   return {
+    metadataBase: new URL(baseUrl),
     title: seoConfig.title,
     description: seoConfig.description,
     keywords: seoConfig.keywords.join(', '),

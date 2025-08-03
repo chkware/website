@@ -12,8 +12,9 @@ const withMDX = require('@next/mdx')({
 const nextConfig = {
   // Removed 'output: export' to enable API routes
   trailingSlash: true,
-  distDir: 'dist',
-  compress: false,
+  // Use default .next directory for better Vercel compatibility
+  // distDir: 'dist', // Commented out for Vercel deployment
+  compress: true, // Enable compression for production
   images: {
     unoptimized: true,
   },
