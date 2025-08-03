@@ -171,9 +171,9 @@ export function generateMetadata(config: Partial<SEOConfig> = {}): Metadata {
       images: [seoConfig.ogImage || 'https://chkware.com/images/og-image.png'],
     },
     verification: {
-      google: 'your-google-verification-code',
-      yandex: 'your-yandex-verification-code',
-      yahoo: 'your-yahoo-verification-code',
+      google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+      yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+      yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION,
     },
     category: 'technology',
   };

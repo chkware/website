@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://chkware.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://chkware.com';
   
   return {
     rules: [
@@ -13,10 +13,11 @@ export default function robots(): MetadataRoute.Robots {
           '/admin/',
           '/_next/',
           '/private/',
-          '/*.json$',
+          '/*.json',
           '/demo/',
           '/experiment/',
-          '/blog/',
+          '/blog/',           // Hide blog for launch
+          '/aceternity-test/', // Hide test page
         ],
       },
       {
